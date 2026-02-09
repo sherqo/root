@@ -34,6 +34,12 @@ const imgSrc = (imageModule as { src: string }).src || import.meta.env.PUBLIC_OG
   title={journal.data.title}
   description={journal.data.description || journal.data.title}
   ogImage={import.meta.env.PUBLIC_BASE_URL + imgSrc}>
+  <a href="/" class="hover:text-primary mb-8 inline-flex items-center gap-2 text-sm">
+    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+    Home
+  </a>
   <article>
     <PageHeader subtitle={journal.data.description} date={journal.data.date.toLocaleDateString()}>{journal.data.title}</PageHeader>
 

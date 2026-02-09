@@ -10,35 +10,39 @@ const sortedJournals = journals.sort((a: Journal, b: Journal) => b.data.date.get
 ---
 
 {/* HOME PAGE '/' */}
-<PageLayout class="flex flex-col justify-between" title="Home" description="Sharqawy — CS student, builder, and maker. Read my journal.">
-  <PageHeader subtitle="CS student & builder">yo, i'm sharaawy</PageHeader>
+<PageLayout title="Home" description="Sharqawy — CS student, builder, and maker. Read my journal.">
+  <div class="space-y-16">
+    <PageHeader subtitle="CS student & builder">yo, i'm sharaawy</PageHeader>
 
-  <p>
-    i'm a cs student tryna <strong>kill fear through building and content</strong>. i build and share to
-    <strong> get out of my own way</strong>. i like sharp tools, clean design, and <strong>projects that actually do sth</strong>. this is
-    my <strong>public space</strong> to share my work, thoughts, and everything i'm figuring out along the way.
-  </p>
+    <div class="space-y-6">
+      <p>
+        i'm a cs student tryna <strong>kill fear through building and content</strong>. i build and share to
+        <strong> get out of my own way</strong>. i like sharp tools, clean design, and <strong>projects that actually do sth</strong>. this
+        is my <strong>public space</strong> to share my work, thoughts, and everything i'm figuring out along the way.
+      </p>
 
-  <p class="my-4">
-    i love <strong>losing in random</strong> internet rabbit holes and learning whatever <strong>sparks my brain</strong>. i'd love building <strong
-      >PCs</strong
-    > with minimalist setups. i find <strong>art</strong> in the everyday, from cooking to writing poetry, and i love <strong
-      >breaking things</strong
-    > to reverse-engineer them. <strong>debating ideas</strong> keeps me sharp, always aiming for <strong>honesty and authenticity</strong>.
-  </p>
+      <p>
+        i love <strong>losing in random</strong> internet rabbit holes and learning whatever <strong>sparks my brain</strong>. i'd love
+        building <strong>PCs</strong> with minimalist setups. i find <strong>art</strong> in the everyday, from cooking to writing poetry, and
+        i love <strong>breaking things</strong> to reverse-engineer them. <strong>debating ideas</strong> keeps me sharp, always aiming for <strong
+          >honesty and authenticity</strong
+        >.
+      </p>
+    </div>
 
-  <div class="mt-12">
-    <h2 class="mb-6 text-2xl font-bold">Blog</h2>
-    {
-      sortedJournals.length === 0 ? (
-        <p>No posts yet.</p>
-      ) : (
-        <div class="flex flex-col items-start gap-4">
-          {sortedJournals.map((journal: Journal) => (
-            <Card journal={journal} />
-          ))}
-        </div>
-      )
-    }
+    <div>
+      <div class="bg-border my-12 h-px"></div>
+      {
+        sortedJournals.length === 0 ? (
+          <p>No posts yet.</p>
+        ) : (
+          <div class="flex flex-col gap-6">
+            {sortedJournals.map((journal: Journal) => (
+              <Card journal={journal} />
+            ))}
+          </div>
+        )
+      }
+    </div>
   </div>
 </PageLayout>
