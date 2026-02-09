@@ -1,6 +1,6 @@
 ## my personal site :)
 
-[sharq.tech](https://www.sharq.tech)
+[sharq.tech](https://sherqo,diran.app)
 
 ### Stack
 
