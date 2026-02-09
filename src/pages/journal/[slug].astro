@@ -27,6 +27,7 @@ const entry = imageFilename
   : null;
 
 const imageModule = entry ? ((await entry[1]()) as { default: unknown }).default : null;
+const originalPath = entry ? entry[0].replace('/src', '') : null;
 const imgSrc = (imageModule as { src: string }).src || import.meta.env.PUBLIC_OG_IMAGE;
 ---
 
@@ -43,7 +44,7 @@ const imgSrc = (imageModule as { src: string }).src || import.meta.env.PUBLIC_OG
   <article>
     <PageHeader subtitle={journal.data.description} date={journal.data.date.toLocaleDateString()}>{journal.data.title}</PageHeader>
 
-    {imageModule && <Image class="py-0" src={imageModule} alt={journal.data.title} />}
+    {imageModule && <Image class="py-0" src={imageModule} originalSrc={originalPath} alt={journal.data.title} />}
 
     <Content />
   </article>

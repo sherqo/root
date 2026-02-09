@@ -1,9 +1,10 @@
 ---
 import { Image as AstroImage } from 'astro:assets';
 
-const { src, alt, width = 736, height, ...rest } = Astro.props;
+const { src, originalSrc, alt, width = 736, height, ...rest } = Astro.props;
+const linkHref = originalSrc || src.src;
 ---
 
-<a href={src.src} target="_blank" rel="noopener noreferrer" class="rounded-img block cursor-pointer overflow-hidden">
+<a href={linkHref} target="_blank" rel="noopener noreferrer" class="rounded-img block cursor-pointer overflow-hidden">
   <AstroImage src={src} alt={alt} width={width} height={height} loading="eager" fetchpriority="high" {...rest} />
 </a>
