@@ -8,9 +8,9 @@ const { subtitle, date } = Astro.props as PageHeaderProps;
 ---
 
 <header class="mb-8 text-center">
-  <h1 class="mb-2">
+  <h1 class="my-2">
     <slot />
   </h1>
   {subtitle && <p class="lead mt-2 mb-2">{subtitle}</p>}
-  {date && <time class="text-muted-foreground mt-2 block text-sm">{date}</time>}
+  {date && <time class="text-muted-foreground mt-2">{date}</time>}
 </header>

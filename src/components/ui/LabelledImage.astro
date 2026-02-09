@@ -6,6 +6,6 @@ const { src, alt, width = 736, height, ...rest } = Astro.props;
 const fullQualityImage = await getImage({ src, quality: 100, format: 'png' });
 ---
 
-<a href={fullQualityImage.src} target="_blank" rel="noopener noreferrer" class="rounded-img block cursor-pointer overflow-hidden">
+<a href={fullQualityImage.src} target="_blank" rel="noopener noreferrer" class="block cursor-pointer overflow-hidden">
   <AstroImage src={src} alt={alt} width={width} height={height} loading="eager" fetchpriority="high" quality={40} format="webp" {...rest} />
 </a>
