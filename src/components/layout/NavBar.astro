@@ -1,7 +1,5 @@
 ---
-import Separator from '@/components/ui/Separator.astro';
 import ThemeToggler from '@/components/ui/ThemeToggler.astro';
-import NavLink from './NavLink.astro';
 ---
 
 <header class="sticky top-0 z-10 w-full border-b bg-transparent backdrop-blur-md backdrop-saturate-150" transition:persist>
@@ -10,11 +8,6 @@ import NavLink from './NavLink.astro';
     <a href="/" class="text-foreground hover:text-primary font-serif text-xl font-bold italic hover:underline">S.</a>
 
     <div class="flex items-center gap-4">
-      <NavLink href="/journal">Jour.</NavLink>
-      <NavLink href="/content">Con.</NavLink>
-      <NavLink href="/gallery">Gal.</NavLink>
-
-      <Separator />
       <ThemeToggler />
     </div>
   </div>

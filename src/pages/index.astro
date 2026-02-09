@@ -1,15 +1,16 @@
 ---
+import { getCollection } from 'astro:content';
 import PageLayout from '@/layouts/PageLayout.astro';
 import PageHeader from '@/components/layout/PageHeader.astro';
-import { Image } from 'astro:assets';
-import supraImg from '@/assets/imgs/common/supra-white.jpg';
+import Card from '@/components/features/journal/card.astro';
+import type { Journal } from '@/types/journal';
+
+const journals = await getCollection('journal');
+const sortedJournals = journals.sort((a: Journal, b: Journal) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 {/* HOME PAGE '/' */}
-<PageLayout
-  class="flex flex-col justify-between"
-  title="Home"
-  description="Sharqawy — CS student, builder, and maker. Read my journal and view my projects.">
+<PageLayout class="flex flex-col justify-between" title="Home" description="Sharqawy — CS student, builder, and maker. Read my journal.">
   <PageHeader subtitle="CS student & builder">yo, i'm sharaawy</PageHeader>
 
   <p>
@@ -25,5 +26,19 @@ import supraImg from '@/assets/imgs/common/supra-white.jpg';
       >breaking things</strong
     > to reverse-engineer them. <strong>debating ideas</strong> keeps me sharp, always aiming for <strong>honesty and authenticity</strong>.
   </p>
-  <Image src={supraImg} alt="Picture of a White Toyota Supra" />
+
+  <div class="mt-12">
+    <h2 class="mb-6 text-2xl font-bold">Blog</h2>
+    {
+      sortedJournals.length === 0 ? (
+        <p>No posts yet.</p>
+      ) : (
+        <div class="flex flex-col items-start gap-4">
+          {sortedJournals.map((journal: Journal) => (
+            <Card journal={journal} />
+          ))}
+        </div>
+      )
+    }
+  </div>
 </PageLayout>

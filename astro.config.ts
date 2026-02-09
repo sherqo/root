@@ -1,6 +1,5 @@
 // @ts-check
 import mdx from '@astrojs/mdx';
-import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
@@ -20,7 +19,7 @@ const htmlMin = htmlMinifier({
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.sharq.tech',
-  integrations: [mdx(), preact(), sitemapConfig],
+  integrations: [mdx(), sitemapConfig],
 
   // Astrso
   prefetch: {
