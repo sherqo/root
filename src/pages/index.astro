@@ -1,9 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
-import PageLayout from '@/layouts/PageLayout.astro';
-import PageHeader from '@/components/layout/PageHeader.astro';
-import Card from '@/components/features/journal/card.astro';
-import type { Journal } from '@/types/journal';
+import PageLayout from '@/components/layouts/PageLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import Card from '@/components/Card.astro';
+import type { Journal } from '@/lib/journal.type';
 
 const journals = await getCollection('journal');
 const sortedJournals = journals.sort((a: Journal, b: Journal) => b.data.date.getTime() - a.data.date.getTime());

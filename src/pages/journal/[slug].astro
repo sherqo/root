@@ -1,8 +1,8 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
-import PageLayout from '@/layouts/PageLayout.astro';
-import PageHeader from '@/components/layout/PageHeader.astro';
-import Image from '@/components/ui/LabelledImage.astro';
+import PageLayout from '@/components/layouts/PageLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import Image from '@/components/LabelledImage.astro';
 
 export async function getStaticPaths() {
   const journals = await getCollection('journal');
