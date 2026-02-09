@@ -33,9 +33,16 @@ export default defineConfig({
   // Vite, build, bundling
   vite: {
     plugins: [tailwindcss(), compress(), htmlMin],
+
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
+      },
+    },
+
+    server: {
+      headers: {
+        'Cache-Control': 'public, max-age=31536000, immutable',
       },
     },
 
