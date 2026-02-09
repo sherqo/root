@@ -1,7 +1,5 @@
 ## my personal site :)
 
-[sharq.tech](https://sherqo,diran.app)
-
 ### Stack
 
 - **Astro v5** - Static site generator with islands architecture
