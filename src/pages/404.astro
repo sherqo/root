@@ -3,6 +3,9 @@ import PageLayout from '@/components/layouts/PageLayout.astro';
 import PageHeader from '@/components/PageHeader.astro';
 ---
 
-<PageLayout title="404" description="Page not found.">
-  <PageHeader subtitle="Not Found - Sorry bro :(">404</PageHeader>
+<PageLayout title="404 - Not Found" description="Page not found.">
+  <PageHeader subtitle="Not Found - Sorry bro :(" date={new Date().toISOString()}>404</PageHeader>
+  <div class="text-center">
+    <a href="/">Back to Home</a>
+  </div>
 </PageLayout>

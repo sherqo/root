@@ -7,12 +7,18 @@ import type { Journal } from '@/lib/journal.type';
 
 const journals = await getCollection('journal');
 const sortedJournals = journals.sort((a: Journal, b: Journal) => b.data.date.getTime() - a.data.date.getTime());
+
+const now = new Date();
+const formattedDate = now
+  .toISOString()
+  .replace('T', ' ')
+  .replace(/\.\d{3}Z$/, ' UTC');
 ---
 
 {/* HOME PAGE '/' */}
 <PageLayout title="Home" description="Sharqawy — CS student, builder, and maker. Read my journal.">
   <div class="space-y-16">
-    <PageHeader subtitle="CS student & builder">Sharqawy Wael</PageHeader>
+    <PageHeader date={formattedDate}>Sharqawy Wael</PageHeader>
 
     <div class="space-y-6">
       <p>
