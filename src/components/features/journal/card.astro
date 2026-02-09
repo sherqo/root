@@ -6,10 +6,10 @@ const { journal } = Astro.props as { journal: Journal };
 const includeYear = journal.data.date.getFullYear() !== new Date().getFullYear();
 ---
 
-<article class="group border-border hover:border-foreground/20 not-prose w-full border-b py-3 transition-colors">
+<article class="group border-border hover:border-foreground/20 not-prose w-full border-b py-3">
   <a href={`/journal/${journal.slug}`} class="block space-y-1">
     <div class="flex items-baseline justify-between gap-4">
-      <h3 class="text-foreground group-hover:text-primary font-medium transition-colors">
+      <h3 class="text-foreground group-hover:text-primary font-medium">
         {journal.data.title}
       </h3>
       <time datetime={journal.data.date.toISOString()} class="text-muted-foreground shrink-0 text-sm">
