@@ -8,21 +8,21 @@ import { Sun, Moon } from '@/components/icons/index.astro';
 </button>
 
 <script is:inline>
-  const t = () => {
-    const b = document.getElementById('tt'),
+  function t() {
+    let b = document.getElementById('tt'),
       s = b.querySelectorAll('svg'),
       d = localStorage.t === 'd';
-    const u = () => {
+    const u = function () {
       document.documentElement.classList.toggle('dark', d);
       s[0].classList.toggle('hidden', !d);
       s[1].classList.toggle('hidden', d);
     };
-    b.onclick = () => {
+    b.onclick = function () {
       d = !d;
       localStorage.t = d ? 'd' : 'l';
       u();
     };
     u();
-  };
+  }
   t();
 </script>
