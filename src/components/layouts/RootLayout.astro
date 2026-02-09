@@ -35,6 +35,12 @@ description += ' ' + env.PUBLIC_POSTFIX;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark light" />
 
+    <script is:inline>
+      if (localStorage.t === 'd') {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={Astro.url} />
