@@ -5,5 +5,5 @@ const { src, alt, width = 736, height, ...rest } = Astro.props;
 ---
 
 <div class="rounded-img overflow-hidden">
-  <AstroImage src={src} alt={alt} width={width} height={height} loading="lazy" {...rest} />
+  <AstroImage src={src} alt={alt} width={width} height={height} loading="eager" fetchpriority="high" {...rest} />
 </div>

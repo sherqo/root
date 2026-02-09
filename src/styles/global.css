@@ -39,10 +39,9 @@ html {
   --color-ring: var(--ring);
 
   --font-inter: 'Inter Variable', system-ui, sans-serif;
-  --font-lora: 'Lora', 'Times New Roman', serif;
   --font-monospace: monospace;
   --font-sans: var(--font-inter);
-  --font-serif: var(--font-lora);
+  --font-serif: 'Times New Roman', serif;
   --font-mono: var(--font-monospace);
 
   --radius-sm: calc(var(--radius) - 4px);
