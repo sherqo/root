@@ -9,12 +9,20 @@ import { Sun, Moon } from '@/components/icons/index.astro';
 
 <script is:inline>
   function t() {
-    var b = document.getElementById('tt'), s = b.querySelectorAll('svg'), d = localStorage.t === 'd';
-    var u = function () { document.documentElement.classList.toggle('dark', d); s[0].classList.toggle('hidden', !d); s[1].classList.toggle('hidden', d); };
-    b.onclick = function () { d = !d; localStorage.t = d ? 'd' : 'l'; u(); };
+    var b = document.getElementById('tt'),
+      s = b.querySelectorAll('svg'),
+      d = localStorage.t === 'd';
+    var u = function () {
+      document.documentElement.classList.toggle('dark', d);
+      s[0].classList.toggle('hidden', !d);
+      s[1].classList.toggle('hidden', d);
+    };
+    b.onclick = function () {
+      d = !d;
+      localStorage.t = d ? 'd' : 'l';
+      u();
+    };
     u();
   }
   t();
-  document.addEventListener('astro:before-swap', function (e) { e.newDocument.documentElement.classList.toggle('dark', localStorage.t === 'd'); });
-  document.addEventListener('astro:after-swap', t);
 </script>
