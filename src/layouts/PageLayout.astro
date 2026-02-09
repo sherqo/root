@@ -1,6 +1,5 @@
 ---
 import RootLayout from '@/layouts/RootLayout.astro';
-import NavBar from '@/components/layout/NavBar.astro';
 import { cn } from '@/lib/utils';
 import Footer from '@/components/features/home/Footer.astro';
 
@@ -15,7 +14,6 @@ const { title, description, ogImage, class: className = '' } = Astro.props as Pr
 ---
 
 <RootLayout title={title} description={description} ogImage={ogImage}>
-  <NavBar />
   <main class={cn('p-4 flex-1 w-full max-w-3xl mx-auto', className)} transition:animate="initial">
     <slot />
   </main>

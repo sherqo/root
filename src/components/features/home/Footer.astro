@@ -1,5 +1,6 @@
 ---
-import { GitHub, X, Linkedin } from '@/components/icons/index.astro';
+import { GitHub, X } from '@/components/icons/index.astro';
+import ThemeToggler from '@/components/ui/ThemeToggler.astro';
 const mail = 'sharqawycs@gmail.com';
 ---
 
@@ -12,15 +13,13 @@ const mail = 'sharqawycs@gmail.com';
 
     {/* Icons */}
     <div class="flex items-center gap-4 sm:gap-6">
-      <a href="https://github.com/sharqawycs" target="_blank" rel="noopener noreferrer" aria-label="Sharqawy GitHub profile">
+      <a href="https://github.com/sherqo" target="_blank" rel="noopener noreferrer" aria-label="Sharqawy GitHub profile">
         <GitHub />
       </a>
       <a href="https://x.com/sharqawycs" target="_blank" rel="noopener noreferrer" aria-label="Sharqawy X profile">
         <X />
       </a>
-      <a href="https://linkedin.com/in/sharqawycs" target="_blank" rel="noopener noreferrer" aria-label="Sharqawy LinkedIn profile">
-        <Linkedin />
-      </a>
+      <ThemeToggler />
     </div>
   </div>
 </footer>
