@@ -43,17 +43,7 @@ const imgSrc = (imageModule as { src: string }).src || import.meta.env.PUBLIC_OG
   <article>
     <PageHeader subtitle={journal.data.description} date={journal.data.date.toLocaleDateString()}>{journal.data.title}</PageHeader>
 
-    {
-      imageModule && (
-        <Image
-          class="py-0"
-          src={imageModule}
-          alt={journal.data.title}
-          sourceLabel={journal.data.imageSourceLabel}
-          sourceUrl={journal.data.imageSourceUrl}
-        />
-      )
-    }
+    {imageModule && <Image class="py-0" src={imageModule} alt={journal.data.title} />}
 
     <Content />
   </article>

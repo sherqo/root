@@ -1,21 +1,9 @@
 ---
 import { Image as AstroImage } from 'astro:assets';
 
-const { src, alt, width = 736, height, sourceLabel = '', sourceUrl = '#', ...rest } = Astro.props;
+const { src, alt, width = 736, height, ...rest } = Astro.props;
 ---
 
-<div class="group rounded-img relative block overflow-hidden">
-  <AstroImage src={src} alt={alt} width={width} height={height} {...rest} />
-
-  {
-    sourceLabel && (
-      <a
-        href={sourceUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="rounded-b-img absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/70 to-transparent px-2 py-2 text-sm text-white opacity-0 group-hover:opacity-100">
-        {sourceLabel}
-      </a>
-    )
-  }
+<div class="rounded-img overflow-hidden">
+  <AstroImage src={src} alt={alt} width={width} height={height} loading="lazy" {...rest} />
 </div>
