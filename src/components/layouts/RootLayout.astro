@@ -1,7 +1,6 @@
 ---
 // The Root Layout with all global rules
 import '@/global.css';
-import SpeedInsights from '@vercel/speed-insights/astro';
 
 // Inter font, the main font
 import '@fontsource-variable/inter';
@@ -53,6 +52,5 @@ description += ' ' + env.PUBLIC_POSTFIX;
 
   <body>
     <slot />
-    {isProd && <SpeedInsights />}
   </body>
 </html>
