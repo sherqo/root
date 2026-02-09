@@ -2,63 +2,19 @@
 import { Sun, Moon } from '@/components/icons/index.astro';
 ---
 
-{/* CAUTION: This code is writted with magic, DO NOT TOUCH IT */}
-{/* if you touch this code, YOU MUST TEST THE TOGGLE BUTTON 'AGGRESSIVELY' IN ALL CASES */}
-<button id="theme-toggler" class="hover:text-primary text-foreground h-6 w-6" aria-label="Theme toggle button">
+<button id="tt" class="hover:text-primary text-foreground h-6 w-6" aria-label="Theme toggle button">
   <Moon class="hidden" />
   <Sun class="hidden" />
 </button>
 
-{
-  /* 
-  Dark mode toggler:
-  - stores theme in localStorage as "t" = 'd' (dark) or 'l' (light)
-  - applies html.dark instantly
-  - swaps moon/sun icons (first/second <svg>)
-  - click button #theme-toggler to toggle
-
-  the readable version:
-  ```
-    const themeToggler = document.getElementById('theme-toggler');
-    const [moonIcon, sunIcon] = themeToggler.querySelectorAll('svg');
-
-    function setTheme(theme, doc = document) {
-      localStorage.setItem('t', theme);
-      doc.documentElement.classList.toggle('dark', theme === 'd');
-      if (doc === document) {
-        moonIcon.classList.toggle('hidden', theme !== 'd');
-        sunIcon.classList.toggle('hidden', theme === 'd');
-      }
-    }
-
-    const getTheme = () => localStorage.getItem('t') || 'd';
-
-    themeToggler.onclick = () => setTheme(getTheme() === 'd' ? 'l' : 'd');
-
-    setTheme(getTheme());
-
-    document.addEventListener('astro:before-swap', e => {
-      setTheme(getTheme(), e.newDocument);
-    });
-  ```
-*/
-}
-
 <script is:inline>
-  const b = document.getElementById('theme-toggler'),
-    [m, s] = b.querySelectorAll('svg'),
-    st = (theme, doc = document) => {
-      localStorage.setItem('t', theme);
-      doc.documentElement.classList.toggle('dark', theme === 'd');
-      if (doc === document) {
-        m.classList.toggle('hidden', theme !== 'd');
-        s.classList.toggle('hidden', theme === 'd');
-      }
-    },
-    gt = () => localStorage.getItem('t') || 'l';
-  b.onclick = () => st(gt() === 'd' ? 'l' : 'd');
-  st(gt());
-  document.addEventListener('astro:before-swap', e => {
-    st(gt(), e.newDocument);
-  });
+  function t() {
+    var b = document.getElementById('tt'), s = b.querySelectorAll('svg'), d = localStorage.t === 'd';
+    var u = function () { document.documentElement.classList.toggle('dark', d); s[0].classList.toggle('hidden', !d); s[1].classList.toggle('hidden', d); };
+    b.onclick = function () { d = !d; localStorage.t = d ? 'd' : 'l'; u(); };
+    u();
+  }
+  t();
+  document.addEventListener('astro:before-swap', function (e) { e.newDocument.documentElement.classList.toggle('dark', localStorage.t === 'd'); });
+  document.addEventListener('astro:after-swap', t);
 </script>

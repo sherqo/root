@@ -14,7 +14,7 @@ const { title, description, ogImage, class: className = '' } = Astro.props as Pr
 ---
 
 <RootLayout title={title} description={description} ogImage={ogImage}>
-  <main class={cn('p-4 flex-1 w-full max-w-3xl mx-auto', className)} transition:animate="initial">
+  <main class={cn('p-4 flex-1 w-full max-w-3xl mx-auto', className)}>
     <slot />
   </main>
   <Footer />
