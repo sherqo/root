@@ -1,0 +1,12 @@
+---
+import { Image as AstroImage, getImage } from 'astro:assets';
+import { cn } from '@/lib/utils';
+
+const { src, alt, width = 736, height, class: className, ...rest } = Astro.props;
+
+const fullQualityImage = await getImage({ src, quality: 100, format: 'png' });
+---
+
+<a href={fullQualityImage.src} target="_blank" rel="noopener noreferrer" class={cn('block cursor-pointer overflow-hidden', className)}>
+  <AstroImage src={src} alt={alt} width={width} height={height} loading="eager" fetchpriority="high" quality={40} format="webp" {...rest} />
+</a>

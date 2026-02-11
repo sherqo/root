@@ -2,7 +2,6 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import PageLayout from '@/components/layouts/PageLayout.astro';
 import PageHeader from '@/components/PageHeader.astro';
-import Image from '@/components/LabelledImage.astro';
 
 export async function getStaticPaths() {
   const journals = await getCollection('journal');
@@ -14,26 +13,12 @@ export async function getStaticPaths() {
 
 const { journal } = Astro.props as { journal: CollectionEntry<'journal'> };
 const { Content } = await journal.render();
-
-// build a map of all local images (eagerly at build time)
-const images = import.meta.glob('/src/assets/imgs/journal/*');
-const imageFilename = journal.data.image; // example: "my-cover"
-
-// find the module whose path contains that filename
-const entry = imageFilename
-  ? Object.entries(images).find(
-      ([path]) => path.includes(`/${imageFilename}.`) // matches /path/to/my-cover.jpg, .png, etc
-    )
-  : null;
-
-const imageModule = entry ? ((await entry[1]()) as { default: unknown }).default : null;
-const imgSrc = (imageModule as { src: string }).src || import.meta.env.PUBLIC_OG_IMAGE;
 ---
 
 <PageLayout
   title={journal.data.title}
   description={journal.data.description || journal.data.title}
-  ogImage={import.meta.env.PUBLIC_BASE_URL + imgSrc}>
+  ogImage={import.meta.env.PUBLIC_BASE_URL + import.meta.env.PUBLIC_OG_IMAGE}>
   <article>
     <PageHeader
       subtitle={journal.data.description}
@@ -43,8 +28,6 @@ const imgSrc = (imageModule as { src: string }).src || import.meta.env.PUBLIC_OG
         year: 'numeric',
       })}>{journal.data.title}</PageHeader
     >
-
-    {imageModule && <Image class="py-0" src={imageModule} alt={journal.data.title} />}
 
     <Content />
 

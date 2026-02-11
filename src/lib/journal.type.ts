@@ -8,9 +8,6 @@ type Journal =
         date: Date;
         description?: string;
         tags?: string[];
-        image?: string;
-        imageSourceLabel?: string;
-        imageSourceUrl?: string;
       };
     }
   | CollectionEntry<'journal'>;
