@@ -27,7 +27,7 @@
         "tailwind-merge": "^3.4.0",
         "tailwindcss": "^4.1.18",
         "typescript": "^5.9.3",
-        "typescript-eslint": "^8.54.0",
+        "typescript-eslint": "^8.55.0",
         "vite-plugin-compression": "^0.5.1",
         "vite-plugin-html-minifier": "^1.0.5",
       },
