@@ -17,7 +17,7 @@ const htmlMin = htmlMinifier({
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://sherqo.diran.app',
+  site: 'https://www.sherqo.me',
   integrations: [mdx(), sitemapConfig],
 
   // Astrso

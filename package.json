@@ -11,13 +11,13 @@
     "tailwindcss",
     "mdx"
   ],
-  "homepage": "https://sherqo.diran.app",
+  "homepage": "https://www.sherqo.me",
   "repository": {
     "type": "git",
     "url": "https://github.com/sherqo/root.git"
   },
   "license": "MIT",
-  "author": "Sharqawy <sharqawycs@gmail.com>",
+  "author": "Sharqawy <sherqo@sherqo.me>",
   "type": "module",
   "scripts": {
     "astro": "astro",
