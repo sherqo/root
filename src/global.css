@@ -12,10 +12,6 @@ html {
   color: var(--primary-foreground);
 }
 
-/* 
-  * NOTE: Fonts are imported in RootLayout.astro | installed with fontsource
-*/
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -28,7 +24,9 @@ html {
 
   --color-border: var(--border);
 
-  --font-sans: 'Inter Variable', system-ui, sans-serif;
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   --font-serif: 'Times New Roman', serif;
   --font-mono: monospace;
 
