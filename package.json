@@ -35,12 +35,12 @@
     "type-check": "astro check"
   },
   "dependencies": {
-    "astro": "5.13.3"
+    "astro": "5.18.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
     "@astrojs/mdx": "^4.3.13",
-    "@astrojs/sitemap": "3.5.1",
+    "@astrojs/sitemap": "3.7.0",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.2.1",
     "clsx": "^2.1.1",
