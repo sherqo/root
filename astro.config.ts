@@ -7,8 +7,6 @@ import { fileURLToPath, URL } from 'node:url';
 import compress from 'vite-plugin-compression';
 import htmlMinifier from 'vite-plugin-html-minifier';
 
-import cloudflare from "@astrojs/cloudflare";
-
 const sitemapConfig = sitemap({
   filenameBase: 'sitemap',
 });
@@ -70,5 +68,4 @@ export default defineConfig({
     },
   },
 
-  adapter: cloudflare()
 });
