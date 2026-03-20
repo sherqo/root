@@ -1,34 +1,37 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "noEmit": true,
-
-    "allowJs": true,
-    "checkJs": false,
-
-    "strict": true, // Enables all strictness checks (see below for overrides)
-
-    "forceConsistentCasingInFileNames": true, // Avoid casing bugs in imports
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true, // Force return types
-    "noPropertyAccessFromIndexSignature": true,
-
-    /* Preact Config */
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact",
-    "skipLibCheck": false,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
-
-  "exclude": ["dist", ".astro/**", "node_modules/**"],
-
-  "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"]
+	"compilerOptions": {
+		"target": "ES2020",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"noEmit": true,
+		"allowJs": true,
+		"checkJs": false,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"jsx": "react-jsx",
+		"jsxImportSource": "preact",
+		"skipLibCheck": false,
+		"baseUrl": ".",
+		"paths": {
+			"@/*": [
+				"./src/*"
+			]
+		}
+	},
+	"exclude": [
+		"dist",
+		".astro/**",
+		"node_modules/**"
+	],
+	"extends": "astro/tsconfigs/strict",
+	"include": [
+		".astro/types.d.ts",
+		"**/*",
+		"./worker-configuration.d.ts"
+	]
 }
