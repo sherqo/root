@@ -1,0 +1,49 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import PageLayout from '@/components/layouts/PageLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+
+export async function getStaticPaths() {
+  const journals = await getCollection('journal');
+  return journals.map((journal: CollectionEntry<'journal'>) => {
+    const rawSlug = journal.id;
+    const isIndex = rawSlug.endsWith('/index');
+    const slug = isIndex ? rawSlug.slice(0, -6) : rawSlug;
+    return {
+      params: { slug },
+      props: { journal },
+    };
+  });
+}
+
+const { journal } = Astro.props as { journal: CollectionEntry<'journal'> };
+const { Content } = await render(journal);
+
+const rawSlug = journal.id;
+const slugParts = rawSlug.split('/');
+const isSubChapter = slugParts.length > 1 && !rawSlug.endsWith('/index');
+const seriesSlug = isSubChapter ? slugParts.slice(0, -1).join('/') : null;
+---
+
+<PageLayout
+  title={journal.data.title}
+  description={journal.data.description || journal.data.title}
+  ogImage={import.meta.env.PUBLIC_BASE_URL + import.meta.env.PUBLIC_OG_IMAGE}>
+  <article>
+    <PageHeader
+      subtitle={journal.data.description}
+      date={journal.data.date.toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+      })}>{journal.data.title}</PageHeader
+    >
+
+    <Content />
+
+    <div class="flex gap-4">
+      <a href="/"> &#8592; Back to Home</a>
+      {isSubChapter && <a href={`/journal/${seriesSlug}`}> &#8592; Back to Series</a>}
+    </div>
+  </article>
+</PageLayout>

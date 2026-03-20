@@ -25,3 +25,9 @@ pnpm-debug.log*
 
 /public/sitemap.xml
 /public/robots.txt
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example

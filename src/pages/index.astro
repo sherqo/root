@@ -6,7 +6,8 @@ import Card from '@/components/Card.astro';
 import type { Journal } from '@/lib/journal.type';
 
 const journals = await getCollection('journal');
-const sortedJournals = journals.sort((a: Journal, b: Journal) => b.data.date.getTime() - a.data.date.getTime());
+const rootJournals = journals.filter((j: Journal) => !j.id.includes('/') || j.id.endsWith('/index'));
+const sortedJournals = rootJournals.sort((a: Journal, b: Journal) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 {/* HOME PAGE '/' */}
