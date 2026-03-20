@@ -30,12 +30,16 @@
     "format:check": "prettier --check .",
     "lint": "eslint . ",
     "lint:fix": "eslint . --fix",
-    "preview": "astro preview --host",
+    "preview": "bun run build && wrangler dev",
     "start": "astro build && astro preview --host",
-    "type-check": "astro check"
+    "type-check": "astro check",
+    "deploy": "bun run build && wrangler deploy",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "astro": "5.18.0"
+    "@astrojs/cloudflare": "12",
+    "astro": "5.18.0",
+    "wrangler": "^4.76.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
