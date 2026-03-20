@@ -18,6 +18,5 @@ export const links: Record<string, string> = {
   blog: '/',
   journal: '/',
 
-  resume: '/resume.pdf',
-  cv: '/resume', // Assuming you have a resume file
+  cv: '/resume',
 };
