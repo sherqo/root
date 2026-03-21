@@ -3,15 +3,11 @@
   "name": "root",
   "compatibility_date": "2025-09-27",
   "observability": {
-    "enabled": true
+    "enabled": true,
   },
-  "main": "dist/_worker.js/index.js",
-  "compatibility_flags": [
-    "global_fetch_strictly_public",
-    "nodejs_compat"
-  ],
+  "compatibility_flags": ["global_fetch_strictly_public", "nodejs_compat"],
   "assets": {
     "binding": "ASSETS",
-    "directory": "dist"
-  }
+    "directory": "dist",
+  },
 }
