@@ -5,7 +5,6 @@ const { journal } = Astro.props as { journal: Journal };
 
 const rawSlug = ('slug' in journal ? journal.slug : journal.id) ?? '';
 const slug = rawSlug.endsWith('/index') ? rawSlug.slice(0, -6) : rawSlug;
-const includeYear = journal.data.date.getFullYear() !== new Date().getFullYear();
 ---
 
 <article class="not-prose w-full py-3">
@@ -14,15 +13,6 @@ const includeYear = journal.data.date.getFullYear() !== new Date().getFullYear()
       <h3 class="text-foreground group-hover:text-primary font-medium underline">
         {journal.data.title}
       </h3>
-      <time datetime={journal.data.date.toISOString()} class="text-muted-foreground shrink-0 text-sm">
-        {
-          journal.data.date.toLocaleDateString('en-GB', {
-            day: '2-digit',
-            month: 'short',
-            year: includeYear ? 'numeric' : undefined,
-          })
-        }
-      </time>
     </div>
     {journal.data.description && <p class="text-muted-foreground text-sm leading-relaxed">{journal.data.description}</p>}
   </a>

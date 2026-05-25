@@ -30,14 +30,7 @@ const seriesSlug = isSubChapter ? slugParts.slice(0, -1).join('/') : null;
   description={journal.data.description || journal.data.title}
   ogImage={import.meta.env.PUBLIC_BASE_URL + import.meta.env.PUBLIC_OG_IMAGE}>
   <article>
-    <PageHeader
-      subtitle={journal.data.description}
-      date={journal.data.date.toLocaleDateString('en-GB', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric',
-      })}>{journal.data.title}</PageHeader
-    >
+    <PageHeader subtitle={journal.data.description}>{journal.data.title}</PageHeader>
 
     <Content />
 

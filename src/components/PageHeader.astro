@@ -1,10 +1,9 @@
 ---
 interface PageHeaderProps {
   subtitle?: string;
-  date?: string;
 }
 
-const { subtitle, date } = Astro.props as PageHeaderProps;
+const { subtitle } = Astro.props as PageHeaderProps;
 ---
 
 <header class="my-8 text-center">
@@ -12,5 +11,4 @@ const { subtitle, date } = Astro.props as PageHeaderProps;
     <slot />
   </h1>
   {subtitle && <p class="lead mb-4">{subtitle}</p>}
-  {date && <time class="text-muted-foreground">{date}</time>}
 </header>
