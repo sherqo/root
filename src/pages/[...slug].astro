@@ -1,0 +1,52 @@
+---
+import { links } from '../lib/links';
+
+export function getStaticPaths() {
+  const paths: Array<{ params: { slug: string | undefined } }> = [];
+  
+  // Add all base links
+  Object.keys(links).forEach((slug) => {
+    paths.push({
+      params: { slug },
+    });
+  });
+
+  // Add example sub-paths as strings
+  const githubRepos = ['root']; // Add more repo names as needed
+  githubRepos.forEach((repo) => {
+    paths.push({
+      params: { slug: `gh/${repo}` },
+    });
+  });
+
+  return paths;
+}
+
+const { slug } = Astro.params;
+
+let target: string | undefined;
+
+// Check if slug contains a slash (multi-segment path)
+if (slug && slug.includes('/')) {
+  const [baseSlug, ...subParts] = slug.split('/');
+  const baseUrl = links[baseSlug];
+  
+  if (baseUrl) {
+    target = `${baseUrl}/${subParts.join('/')}`;
+  }
+} else if (slug) {
+  target = links[slug];
+}
+
+if (!target) {
+  return Astro.redirect('/404');
+}
+---
+
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+  </head>
+</html>

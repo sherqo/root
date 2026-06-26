@@ -1,19 +1,19 @@
 export const links: Record<string, string> = {
   github: 'https://github.com/sherqo',
-  gh: '/github',
+  gh: 'https://github.com/sherqo',
 
   x: 'https://x.com/sharqawycs',
-  twitter: '/x',
+  twitter: 'https://x.com/sharqawycs',
 
   youtube: 'https://youtube.com/@sharqawycs',
-  yt: '/youtube',
+  yt: 'https://youtube.com/@sharqawycs',
 
   linkedin: 'https://linkedin.com/in/sharqawycs',
-  li: '/linkedin',
-  in: '/linkedin',
+  li: 'https://linkedin.com/in/sharqawycs',
+  in: 'https://linkedin.com/in/sharqawycs',
 
   discord: 'https://discord.gg/sharqawycs',
-  dis: '/discord',
+  dis: 'https://discord.gg/sharqawycs',
 
   blog: '/',
   journal: '/',
