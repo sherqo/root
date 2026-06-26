@@ -2,20 +2,13 @@
 import { links } from '../lib/links';
 
 export function getStaticPaths() {
-  const paths: Array<{ params: { slug: string | undefined } }> = [];
+  // Generate all possible static paths from links
+  const paths: Array<{ params: { slug: string | string[] } }> = [];
 
-  // Add all base links
+  // Add single-segment paths for all links
   Object.keys(links).forEach(slug => {
     paths.push({
       params: { slug },
-    });
-  });
-
-  // Add example sub-paths as strings
-  const githubRepos = ['root']; // Add more repo names as needed
-  githubRepos.forEach(repo => {
-    paths.push({
-      params: { slug: `gh/${repo}` },
     });
   });
 
@@ -26,15 +19,14 @@ const { slug } = Astro.params;
 
 let target: string | undefined;
 
-// Check if slug contains a slash (multi-segment path)
-if (slug && slug.includes('/')) {
-  const [baseSlug, ...subParts] = slug.split('/');
+if (Array.isArray(slug)) {
+  const [baseSlug, ...subParts] = slug;
   const baseUrl = links[baseSlug];
 
   if (baseUrl) {
-    target = `${baseUrl}/${subParts.join('/')}`;
+    target = subParts.length > 0 ? `${baseUrl}/${subParts.join('/')}` : baseUrl;
   }
-} else if (slug) {
+} else {
   target = links[slug];
 }
 
