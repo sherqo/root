@@ -1,4 +1,5 @@
 ---
+// src/pages/[...slug].astro
 import { links } from '../lib/links';
 
 export interface PathParams {
@@ -28,24 +29,14 @@ export function getStaticPaths(): PathParams[] {
   return paths;
 }
 
-const { slug } = Astro.params as { slug?: string };
+const { slug } = Astro.params as { slug: string };
 
-let target: string | undefined;
+const segments: string[] = slug.split('/');
+const baseSlug: string = segments[0];
+const baseUrl: string = links[baseSlug];
 
-if (slug) {
-  const segments: string[] = slug.split('/');
-  const baseSlug: string = segments[0];
-  const baseUrl: string | undefined = links[baseSlug];
-
-  if (baseUrl) {
-    const subParts: string[] = segments.slice(1);
-    target = subParts.length > 0 ? `${baseUrl}/${subParts.join('/')}` : baseUrl;
-  }
-}
-
-if (!target) {
-  return Astro.redirect('/404');
-}
+const subParts: string[] = segments.slice(1);
+const target: string = subParts.length > 0 ? `${baseUrl}/${subParts.join('/')}` : baseUrl;
 ---
 
 <!doctype html>
