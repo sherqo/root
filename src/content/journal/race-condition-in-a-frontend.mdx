@@ -1,0 +1,31 @@
+---
+title: 'A Sneaky Race Condition in a Frontend'
+date: 2026-08-28
+description: 'First time I encountered a race condition in React, lmao'
+---
+
+I was working on a visualization tool that renders live diagrams. The frontend listens for updates from a backend server and applies them to the diagram in real time.
+
+While testing with rapid changes, I noticed something **strange**. Sometimes a change I made would show up correctly. Other times, it would flash on screen for a second and then **silently revert**.
+
+## The Setup
+
+Simply, the backend sends commands describing changes to the diagram - move this component, update that value, add this connection. The frontend receives each command and applies it **asynchronously**, updating the rendered diagram to match.
+
+## The Actual Bug
+
+Here's the part that took me a minute to really see: the order commands arrive is not the same as the order they finish applying.
+
+Say _command A_ arrives first, then _command B_ arrives half a second later. You'd assume _A_ applies, then _B_ applies, and _B_'s result is what you see - which is usually what you want, since _B_ is the more recent instruction.
+
+But both commands were being applied **asynchronously**. If _A_ happens to take slightly longer to process than _B_, _B_ can finish first, and then _A_ finishes after it, **overwriting** _B_'s result with older data.
+
+Because execution times varied, fast user actions caused tasks to overlap and resolve out of order. It's a classic **race condition**.
+
+## The Fix
+
+The fix was to combine successive diffs into a **cumulative diff** before applying. Since each command represented a partial change (a diff) rather than the full state, we could merge the new diff with any pending diff, effectively composing the transformations. The merged diff then represents the net effect of all pending changes, and we apply it once. This way, the **most recent changes** always take precedence, because they are applied on top of older ones in the composition.
+
+## The Lesson
+
+It was a small code change in the end, but a good reminder that async code sometimes requires **explicit ordering logic**.
