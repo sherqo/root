@@ -8,5 +8,6 @@
   "compatibility_flags": ["global_fetch_strictly_public", "nodejs_compat"],
   "assets": {
     "directory": "dist",
+    "not_found_handling": "404-page",
   },
 }
