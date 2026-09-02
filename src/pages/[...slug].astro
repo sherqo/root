@@ -1,19 +1,25 @@
 ---
 import { links } from '../lib/links';
 
-export function getStaticPaths() {
-  const paths: Array<{ params: { slug: string | undefined } }> = [];
+export interface PathParams {
+  params: {
+    slug: string;
+  };
+}
 
-  // Add all base links
-  Object.keys(links).forEach(slug => {
+export function getStaticPaths(): PathParams[] {
+  const paths: PathParams[] = [];
+
+  // Add base single-segment links
+  Object.keys(links).forEach((slug: string) => {
     paths.push({
       params: { slug },
     });
   });
 
-  // Add example sub-paths as strings
-  const githubRepos = ['root']; // Add more repo names as needed
-  githubRepos.forEach(repo => {
+  // Add multi-segment sub-paths
+  const githubRepos: string[] = ['root'];
+  githubRepos.forEach((repo: string) => {
     paths.push({
       params: { slug: `gh/${repo}` },
     });
@@ -22,20 +28,19 @@ export function getStaticPaths() {
   return paths;
 }
 
-const { slug } = Astro.params;
+const { slug } = Astro.params as { slug?: string };
 
 let target: string | undefined;
 
-// Check if slug contains a slash (multi-segment path)
-if (slug && slug.includes('/')) {
-  const [baseSlug, ...subParts] = slug.split('/');
-  const baseUrl = links[baseSlug];
+if (slug) {
+  const segments: string[] = slug.split('/');
+  const baseSlug: string = segments[0];
+  const baseUrl: string | undefined = links[baseSlug];
 
   if (baseUrl) {
-    target = `${baseUrl}/${subParts.join('/')}`;
+    const subParts: string[] = segments.slice(1);
+    target = subParts.length > 0 ? `${baseUrl}/${subParts.join('/')}` : baseUrl;
   }
-} else if (slug) {
-  target = links[slug];
 }
 
 if (!target) {
