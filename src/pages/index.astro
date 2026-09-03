@@ -7,7 +7,7 @@ import type { Journal } from '@/lib/journal.type';
 const journals = await getCollection('journal');
 const rootJournals = journals.filter((j: Journal) => !j.id.includes('/') || j.id.endsWith('/index'));
 const sortedJournals = rootJournals.sort((a: Journal, b: Journal) => b.data.date.getTime() - a.data.date.getTime());
-const dateFormatter = new Intl.DateTimeFormat('en', { day: '2-digit', month: 'short' });
+const dateFormatter = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
 
 const getJournalSlug = (journal: Journal) => {
   const rawSlug = ('slug' in journal ? journal.slug : journal.id) ?? '';
@@ -36,7 +36,9 @@ const getJournalSlug = (journal: Journal) => {
         ) : (
           <div class="not-prose flex flex-col leading-7">
             {sortedJournals.map((journal: Journal) => (
-              <a href={`/journal/${getJournalSlug(journal)}`} class="text-foreground hover:text-primary no-underline hover:underline">
+              <a
+                href={`/journal/${getJournalSlug(journal)}`}
+                class="text-foreground hover:text-primary focus:text-primary block truncate py-0.5! no-underline hover:underline focus:underline">
                 <time datetime={journal.data.date.toISOString()}>{dateFormatter.format(journal.data.date)}</time> - {journal.data.title}
               </a>
             ))}

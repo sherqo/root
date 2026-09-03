@@ -18,6 +18,7 @@ export async function getStaticPaths() {
 
 const { journal } = Astro.props as { journal: CollectionEntry<'journal'> };
 const { Content } = await render(journal);
+const dateFormatter = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
 
 const rawSlug = journal.id;
 const slugParts = rawSlug.split('/');
@@ -31,6 +32,10 @@ const seriesSlug = isSubChapter ? slugParts.slice(0, -1).join('/') : null;
   ogImage={import.meta.env.PUBLIC_BASE_URL + import.meta.env.PUBLIC_OG_IMAGE}>
   <article>
     <PageHeader subtitle={journal.data.description}>{journal.data.title}</PageHeader>
+
+    <time datetime={journal.data.date.toISOString()} class="text-muted-foreground block text-center text-base">
+      {dateFormatter.format(journal.data.date)}
+    </time>
 
     <Content />
 
