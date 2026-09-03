@@ -33,7 +33,7 @@ const seriesSlug = isSubChapter ? slugParts.slice(0, -1).join('/') : null;
   <article>
     <PageHeader subtitle={journal.data.description}>{journal.data.title}</PageHeader>
 
-    <time datetime={journal.data.date.toISOString()} class="text-muted-foreground block text-center text-base">
+    <time datetime={journal.data.date.toISOString()} class="text-muted block text-center text-base">
       {dateFormatter.format(journal.data.date)}
     </time>
 

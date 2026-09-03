@@ -20,8 +20,6 @@ html {
   --color-primary-foreground: var(--primary-foreground);
 
   --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-
   --color-border: var(--border);
 
   --font-sans:
@@ -34,25 +32,26 @@ html {
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #0f1013;
-  --primary: #ad0054;
-  --primary-foreground: #f8f8f2;
-  --muted: #f0e9ff;
-  --muted-foreground: #6b6b80;
-  --border: #bdbdbb;
+  --background: #fafdf5;
+  --foreground: #171a14;
+
+  --primary: #7cb518;
+  --primary-foreground: #171a14;
+
+  --muted: #5f6658;
+  --border: #d6dccd;
 }
 
 .dark {
-  --background: #101012;
-  --foreground: #f8f8f2;
-  --primary: #bd457f;
-  --primary-foreground: #f8f8f2;
-  --muted: #2a2835;
-  --muted-foreground: #8b8ba0;
-  --border: #44475a;
-}
+  --background: #080c06;
+  --foreground: #f2f5ed;
 
+  --primary: #a3e635;
+  --primary-foreground: #171a14;
+
+  --muted: #858d7e;
+  --border: #272d23;
+}
 @layer base {
   * {
     @apply border-border;

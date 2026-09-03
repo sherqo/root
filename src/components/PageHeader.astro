@@ -10,5 +10,5 @@ const { subtitle } = Astro.props as PageHeaderProps;
   <h1 class="mb-4">
     <slot />
   </h1>
-  {subtitle && <p class="lead mb-4">{subtitle}</p>}
+  {subtitle && <p class="text-muted lead mb-4">{subtitle}</p>}
 </header>
