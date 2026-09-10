@@ -18,6 +18,6 @@ export const links: Record<string, string> = {
   blog: '/',
   journal: '/',
 
-  cv: 'https://resume.sherqo.me/resume.pdf',
-  resume: 'https://resume.sherqo.me/resume.pdf',
+  cv: 'https://resume.sherqo.me/Sharqawy_Wael_Resume.pdf',
+  resume: 'https://resume.sherqo.me/Sharqawy_Wael_Resume.pdf',
 };
