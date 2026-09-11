@@ -1,0 +1,16 @@
+---
+title: 'Working at Siemens EDA'
+date: 2026-08-31
+description: 'A short account of my internship on the Virtual Ethernet team.'
+hidden: true
+---
+
+I spent two months interning at Siemens EDA on the Virtual Ethernet team within Hardware Assisted Verification. I worked on internal tooling for hardware verification workflows and learned how much careful engineering goes into making complex systems observable.
+
+I built a visualization library for interactive diagrams at 50k+ node scale. The diagrams represented hardware verification pipelines, so keeping the interface useful at that size required more than simply rendering more elements.
+
+The frontend used Web Workers to keep the UI responsive during heavy layout and validation operations. I also designed a real-time synchronization protocol between a C++ backend and a React frontend, so changes could move between the two sides without making the interface feel stuck.
+
+Finally, I built bottleneck detection on live performance metrics. The goal was to make slow parts of a workflow visible while the system was running, rather than asking people to diagnose everything after the fact.
+
+It was a short internship, but it gave me a much better understanding of the relationship between visualization, distributed state, and performance-sensitive tooling.

@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '@/components/layouts/PageLayout.astro';
+
+const journals = (await getCollection('journal'))
+  .filter(journal => !journal.data.hidden)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const dateFormatter = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+---
+
+<PageLayout title="Journal" description="Writing about software, systems, and things I'm figuring out.">
+  <div class="space-y-8">
+    <h1 class="journal-title font-extrabold">Journal</h1>
+    <p>Some writing about software, systems, and things I'm figuring out.</p>
+
+    <div class="journal-list">
+      {
+        journals.map(journal => (
+          <a href={`/journal/${journal.id}`}>
+            <time datetime={journal.data.date.toISOString()}>{dateFormatter.format(journal.data.date)}</time> - {journal.data.title}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</PageLayout>

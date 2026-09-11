@@ -29,6 +29,7 @@ const seriesSlug = isSubChapter ? slugParts.slice(0, -1).join('/') : null;
 <PageLayout
   title={journal.data.title}
   description={journal.data.description || journal.data.title}
+  noindex={journal.data.hidden}
   ogImage={import.meta.env.PUBLIC_BASE_URL + import.meta.env.PUBLIC_OG_IMAGE}>
   <article>
     <PageHeader subtitle={journal.data.description}>{journal.data.title}</PageHeader>

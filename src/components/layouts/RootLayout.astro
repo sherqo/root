@@ -7,6 +7,7 @@ export interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  noindex?: boolean;
 }
 
 const env = import.meta.env;
@@ -15,24 +16,23 @@ let {
   title = env.PUBLIC_DEFAULT_TITLE,
   description = env.PUBLIC_DEFAULT_DESCRIPTION,
   ogImage = env.PUBLIC_BASE_URL + env.PUBLIC_OG_IMAGE,
+  noindex = false,
 } = Astro.props as Props;
 
 title += ' ' + env.PUBLIC_POSTFIX;
 description += ' ' + env.PUBLIC_POSTFIX;
-
-const isArabic = Astro.url.pathname === '/ar' || Astro.url.pathname.startsWith('/ar/');
 ---
 
 <!doctype html>
-<html lang={isArabic ? 'ar' : 'en'} dir={isArabic ? 'rtl' : 'ltr'} class="dark">
+<html lang="en" class="dark">
   <head>
     <Font cssVariable="--font-inter" preload />
-    {isArabic && <Font cssVariable="--font-noto-sans-arabic" preload />}
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark light" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <title>{title}</title>
     <link rel="canonical" href={Astro.url} />

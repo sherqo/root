@@ -1,50 +1,43 @@
 ---
-import { getCollection } from 'astro:content';
 import PageLayout from '@/components/layouts/PageLayout.astro';
-import PageHeader from '@/components/PageHeader.astro';
-import type { Journal } from '@/lib/journal.type';
-
-const journals = await getCollection('journal');
-const rootJournals = journals.filter((j: Journal) => !j.id.includes('/') || j.id.endsWith('/index'));
-const sortedJournals = rootJournals.sort((a: Journal, b: Journal) => b.data.date.getTime() - a.data.date.getTime());
-const dateFormatter = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-
-const getJournalSlug = (journal: Journal) => {
-  const rawSlug = ('slug' in journal ? journal.slug : journal.id) ?? '';
-  return rawSlug.endsWith('/index') ? rawSlug.slice(0, -6) : rawSlug;
-};
+import ThemeToggler from '@/components/ThemeToggler.astro';
 ---
 
-{/* HOME PAGE '/' */}
-<PageLayout title="Home" description="Sharqawy — CS student, builder, and maker. Read my journal.">
-  <div class="space-y-16">
-    <PageHeader>Sharqawy Wael</PageHeader>
+<PageLayout title="Sharqawy Wael" description="Sharqawy Wael — software engineer and systems builder." class="home-shell" footer={false}>
+  <div class="home-content">
+    <header class="home-intro">
+      <h1>Hi, I'm Sharqawy Wael, aka Sherqo.</h1>
+      <p>I love building software, understanding how systems work, and writing about what I learn.</p>
+    </header>
 
-    <div class="space-y-6">
-      <p>
-        I'm a Computer Engineering student, and this is my public space to share my work, thoughts, and everything I'm figuring out along
-        the way. My résumé is
-        <a href="/resume" target="_blank" rel="noopener noreferrer"> available</a>.
-      </p>
-    </div>
+    <p class="home-current-work">
+      I'm currently building <a href="https://yaleeq.net" target="_blank" rel="noopener noreferrer">Yaleeq</a>, an internship-finding
+      platform built by students for students.
+    </p>
 
-    <div>
-      <div class="bg-border my-12 h-px"></div>
-      {
-        sortedJournals.length === 0 ? (
-          <p>No posts yet.</p>
-        ) : (
-          <div class="not-prose flex flex-col leading-7">
-            {sortedJournals.map((journal: Journal) => (
-              <a
-                href={`/journal/${getJournalSlug(journal)}`}
-                class="text-foreground hover:text-primary focus:text-primary block truncate py-0.5! no-underline hover:underline focus:underline">
-                <time datetime={journal.data.date.toISOString()}>{dateFormatter.format(journal.data.date)}</time> - {journal.data.title}
-              </a>
-            ))}
-          </div>
-        )
-      }
-    </div>
+    <section class="home-work" aria-labelledby="work-heading">
+      <h2 id="work-heading">What I've worked on so far...</h2>
+      <div class="home-work-list">
+        <p>– I interned at <a href="/journal/siemens">Siemens EDA</a>, building internal tooling for hardware verification workflows.</p>
+        <p>
+          – I built <a href="https://github.com/sherqo/raft" target="_blank" rel="noopener noreferrer">Raft</a>, an implementation of the
+          distributed consensus algorithm.
+        </p>
+      </div>
+    </section>
+
+    <section class="home-journal" aria-labelledby="journal-heading">
+      <p id="journal-heading">I also write some <a href="/journal">stuff</a> about software, systems, and things I'm figuring out.</p>
+    </section>
+
+    <nav class="home-links" aria-label="Elsewhere">
+      <a href="mailto:sherqo@sherqo.me">email</a>
+      <a href="https://github.com/sherqo" target="_blank" rel="noopener noreferrer">github</a>
+      <a href="https://x.com/sharqawycs" target="_blank" rel="noopener noreferrer">x</a>
+      <a href="https://linkedin.com/in/sharqawycs" target="_blank" rel="noopener noreferrer">linkedin</a>
+      <a href="https://youtube.com/@sharqawycs" target="_blank" rel="noopener noreferrer">youtube</a>
+      <a href="/resume" target="_blank" rel="noopener noreferrer">résumé</a>
+      <ThemeToggler />
+    </nav>
   </div>
 </PageLayout>

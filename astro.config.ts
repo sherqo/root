@@ -32,17 +32,6 @@ export default defineConfig({
       display: 'optional',
       fallbacks: ['sans-serif'],
     },
-    {
-      name: 'Noto Sans Arabic',
-      cssVariable: '--font-noto-sans-arabic',
-      provider: fontProviders.google(),
-      weights: ['400 900'],
-      styles: ['normal'],
-      subsets: ['arabic'],
-      formats: ['woff2'],
-      display: 'optional',
-      fallbacks: ['sans-serif'],
-    },
   ],
 
   // Astro

@@ -21,7 +21,7 @@ html {
   --color-muted: var(--muted);
   --color-border: var(--border);
 
-  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-serif: 'Times New Roman', serif;
   --font-mono: monospace;
 
@@ -29,29 +29,25 @@ html {
 }
 
 :root {
-  --background: #fafdf5;
-  --foreground: #171a14;
+  --background: #fdfdfb;
+  --foreground: #181816;
 
   --primary: #7cb518;
   --primary-foreground: #171a14;
 
-  --muted: #5f6658;
-  --border: #d6dccd;
+  --muted: #8b8c88;
+  --border: #e5e5e5;
 }
 
 .dark {
-  --background: #080c06;
-  --foreground: #f2f5ed;
+  --background: #262626;
+  --foreground: #ffffff;
 
   --primary: #a3e635;
   --primary-foreground: #171a14;
 
-  --muted: #858d7e;
-  --border: #272d23;
-}
-
-html[lang='ar'] {
-  --font-primary: var(--font-noto-sans-arabic), var(--font-inter), sans-serif;
+  --muted: #878787;
+  --border: #404040;
 }
 
 @layer base {
@@ -62,36 +58,31 @@ html[lang='ar'] {
   body {
     @apply mx-auto flex min-h-screen max-w-full flex-col;
     @apply font-primary text-foreground bg-background antialiased;
-    font-size: 1.125rem;
-    line-height: 1.7778;
+    font-size: 1rem;
+    line-height: 1.7;
+    letter-spacing: 0;
+    text-rendering: optimizeLegibility;
+  }
+
+  body :where(*) {
+    font-weight: 400;
   }
 
   body a {
-    font-weight: 500;
+    color: inherit;
     text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
-  body p {
-    margin-block: 1.3333em;
+  body h1,
+  body h2,
+  body h3,
+  body h4 {
+    line-height: 1.2;
   }
 
   body strong {
-    font-weight: 600;
-  }
-
-  body h1 {
-    font-weight: 800;
-    font-size: 2.6667em;
-    line-height: 1;
-  }
-
-  body h2 {
-    font-weight: 700;
-  }
-
-  body h3,
-  body h4 {
-    font-weight: 600;
+    font-weight: 500;
   }
 
   body blockquote {
@@ -102,26 +93,106 @@ html[lang='ar'] {
     font-weight: 500;
   }
 
-  body code {
-    font-weight: 600;
-  }
-
-  body pre {
-    font-weight: 400;
-  }
-
   body img {
-    margin-block: 1.7778em;
+    max-width: 100%;
+    height: auto;
   }
 
-  .lead {
+  .home-shell {
+    margin-inline: 0;
+    padding: 0;
+    max-width: none;
+    min-height: 100svh;
+  }
+
+  .home-content {
+    margin: clamp(80px, 16vh, 160px) 0 64px 33.6vw;
+    width: min(520px, calc(100% - 32px));
+  }
+
+  .home-intro h1 {
+    font-weight: 500;
+  }
+
+  .home-intro p {
+    margin-top: 3px;
+  }
+
+  .home-current-work,
+  .home-work {
+    margin-top: 20px;
+  }
+
+  .home-work h2 {
+    color: var(--muted);
+  }
+
+  .home-work-list {
+    display: grid;
+    gap: 16px;
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+
+  .home-journal {
+    margin-top: 32px;
+  }
+
+  .journal-list {
+    display: grid;
+    gap: 4px;
+    margin-top: 2rem;
+  }
+
+  .journal-list a {
+    text-decoration: none;
+  }
+
+  .journal-list a:hover,
+  .journal-list a:focus-visible {
+    text-decoration: underline;
+  }
+
+  .journal-list time {
+    color: var(--muted);
+  }
+
+  .home-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-top: 32px;
+  }
+
+  .home-links a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  .home-links a:hover,
+  .home-links a:focus-visible {
+    color: var(--primary);
+    text-decoration: underline;
+  }
+
+  .page-header h1,
+  .journal-title {
+    font-weight: 800;
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .page-header .lead {
     margin-block: 1.0909em;
-    font-size: 1.2222em;
+    font-size: 1.375em;
     line-height: 1.4545;
   }
 
   .article-content {
     width: 100%;
+    font-size: 1.125rem;
+    line-height: 1.7778;
   }
 
   .article-content p {
@@ -130,20 +201,34 @@ html[lang='ar'] {
 
   .article-content h2 {
     margin-block: 1.8667em 1.0667em;
+    font-weight: 700;
     font-size: 1.6667em;
     line-height: 1.3333;
   }
 
   .article-content h3 {
     margin-block: 1.6667em 0.6667em;
+    font-weight: 600;
     font-size: 1.3333em;
     line-height: 1.5;
+  }
+
+  .article-content strong {
+    font-weight: 600;
   }
 
   .article-content ul,
   .article-content ol {
     margin-block: 1.3333em;
     padding-inline-start: 1.5556em;
+  }
+
+  .article-content ul {
+    list-style-type: disc;
+  }
+
+  .article-content ol {
+    list-style-type: decimal;
   }
 
   .article-content li {
@@ -154,6 +239,8 @@ html[lang='ar'] {
     margin-block: 1.6667em;
     border-inline-start: 0.25rem solid var(--border);
     padding-inline-start: 1em;
+    font-style: italic;
+    font-weight: 500;
   }
 
   .article-content hr {
@@ -174,6 +261,13 @@ html[lang='ar'] {
   .article-content h3 + *,
   .article-content h4 + * {
     margin-top: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .home-content {
+    margin: 48px 16px 64px;
+    width: calc(100% - 32px);
   }
 }
 
