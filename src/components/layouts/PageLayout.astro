@@ -1,6 +1,5 @@
 ---
 import RootLayout from '@/components/layouts/RootLayout.astro';
-import { cn } from '@/lib/utils';
 import Footer from '@/components/Footer.astro';
 
 export interface Props {
@@ -9,15 +8,54 @@ export interface Props {
   ogImage?: string;
   noindex?: boolean;
   footer?: boolean;
-  class?: string;
+  layout?: 'default' | 'home';
 }
 
-const { title, description, ogImage, noindex, footer = true, class: className = '' } = Astro.props as Props;
+const { title, description, ogImage, noindex, footer = true, layout = 'default' } = Astro.props as Props;
 ---
 
 <RootLayout title={title} description={description} ogImage={ogImage} noindex={noindex}>
-  <main class={cn('flex-1 w-full', !className && 'p-4 max-w-3xl mx-auto', className)}>
+  <main class:list={['page-container', { 'page-container-home': layout === 'home' }]}>
     <slot />
   </main>
-  {footer && <Footer />}
+  {
+    footer && (
+      <div class="footer-container">
+        <Footer />
+      </div>
+    )
+  }
 </RootLayout>
+
+<style>
+  .page-container,
+  .footer-container {
+    box-sizing: border-box;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 16px;
+    padding-left: 16px;
+    width: 100%;
+    max-width: 680px;
+  }
+
+  .page-container {
+    flex: 1;
+    margin-top: 48px;
+    margin-bottom: 64px;
+  }
+
+  .page-container-home {
+    margin-top: clamp(48px, 16vh, 160px);
+  }
+
+  .footer-container {
+    margin-bottom: 64px;
+  }
+
+  @media (max-width: 720px) {
+    .page-container-home {
+      margin-top: 48px;
+    }
+  }
+</style>
