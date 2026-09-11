@@ -2,7 +2,7 @@
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 import { fileURLToPath, URL } from 'node:url';
 import compress from 'vite-plugin-compression';
 import htmlMinifier from 'vite-plugin-html-minifier';
@@ -20,7 +20,32 @@ export default defineConfig({
   site: 'https://www.sherqo.me',
   integrations: [mdx(), sitemapConfig],
 
-  // Astrso
+  fonts: [
+    {
+      name: 'Inter',
+      cssVariable: '--font-inter',
+      provider: fontProviders.google(),
+      weights: ['400 900'],
+      styles: ['normal'],
+      subsets: ['latin'],
+      formats: ['woff2'],
+      display: 'optional',
+      fallbacks: ['sans-serif'],
+    },
+    {
+      name: 'Noto Sans Arabic',
+      cssVariable: '--font-noto-sans-arabic',
+      provider: fontProviders.google(),
+      weights: ['400 900'],
+      styles: ['normal'],
+      subsets: ['arabic'],
+      formats: ['woff2'],
+      display: 'optional',
+      fallbacks: ['sans-serif'],
+    },
+  ],
+
+  // Astro
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'viewport',

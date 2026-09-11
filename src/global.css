@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-@plugin '@tailwindcss/typography';
 @custom-variant dark (&:where(.dark, .dark *));
 
 html {
@@ -22,9 +21,7 @@ html {
   --color-muted: var(--muted);
   --color-border: var(--border);
 
-  --font-sans:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-serif: 'Times New Roman', serif;
   --font-mono: monospace;
 
@@ -52,23 +49,131 @@ html {
   --muted: #858d7e;
   --border: #272d23;
 }
+
+html[lang='ar'] {
+  --font-primary: var(--font-noto-sans-arabic), var(--font-inter), sans-serif;
+}
+
 @layer base {
   * {
     @apply border-border;
   }
 
-  /* Prose */
-  body {
-    @apply prose prose-neutral dark:prose-invert prose-lg; /* Prose base styles */
-    @apply prose-a:text-primary; /* Links */
-    @apply prose-hr:border-border max-w-full; /* Horizontal rules */
-    @apply prose-img:my-4; /* Images */
-  }
-
-  /* Last to override prose */
   body {
     @apply mx-auto flex min-h-screen max-w-full flex-col;
     @apply font-primary text-foreground bg-background antialiased;
+    font-size: 1.125rem;
+    line-height: 1.7778;
+  }
+
+  body a {
+    font-weight: 500;
+    text-decoration: underline;
+  }
+
+  body p {
+    margin-block: 1.3333em;
+  }
+
+  body strong {
+    font-weight: 600;
+  }
+
+  body h1 {
+    font-weight: 800;
+    font-size: 2.6667em;
+    line-height: 1;
+  }
+
+  body h2 {
+    font-weight: 700;
+  }
+
+  body h3,
+  body h4 {
+    font-weight: 600;
+  }
+
+  body blockquote {
+    margin-block: 1.6667em;
+    border-inline-start: 0.25rem solid var(--border);
+    padding-inline-start: 1em;
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  body code {
+    font-weight: 600;
+  }
+
+  body pre {
+    font-weight: 400;
+  }
+
+  body img {
+    margin-block: 1.7778em;
+  }
+
+  .lead {
+    margin-block: 1.0909em;
+    font-size: 1.2222em;
+    line-height: 1.4545;
+  }
+
+  .article-content {
+    width: 100%;
+  }
+
+  .article-content p {
+    margin-block: 1.3333em;
+  }
+
+  .article-content h2 {
+    margin-block: 1.8667em 1.0667em;
+    font-size: 1.6667em;
+    line-height: 1.3333;
+  }
+
+  .article-content h3 {
+    margin-block: 1.6667em 0.6667em;
+    font-size: 1.3333em;
+    line-height: 1.5;
+  }
+
+  .article-content ul,
+  .article-content ol {
+    margin-block: 1.3333em;
+    padding-inline-start: 1.5556em;
+  }
+
+  .article-content li {
+    margin-block: 0.6667em;
+  }
+
+  .article-content blockquote {
+    margin-block: 1.6667em;
+    border-inline-start: 0.25rem solid var(--border);
+    padding-inline-start: 1em;
+  }
+
+  .article-content hr {
+    margin-block: 3.1111em;
+    border-top: 1px solid var(--border);
+  }
+
+  .article-content > :first-child {
+    margin-top: 0;
+  }
+
+  .article-content > :last-child {
+    margin-bottom: 0;
+  }
+
+  .article-content hr + *,
+  .article-content h2 + *,
+  .article-content h3 + *,
+  .article-content h4 + * {
+    margin-top: 0;
   }
 }
 

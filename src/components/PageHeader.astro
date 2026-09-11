@@ -7,7 +7,7 @@ const { subtitle } = Astro.props as PageHeaderProps;
 ---
 
 <header class="my-8 text-center">
-  <h1 class="mb-4">
+  <h1 class="mb-4 font-extrabold">
     <slot />
   </h1>
   {subtitle && <p class="text-muted lead mb-4">{subtitle}</p>}

@@ -37,7 +37,9 @@ const seriesSlug = isSubChapter ? slugParts.slice(0, -1).join('/') : null;
       {dateFormatter.format(journal.data.date)}
     </time>
 
-    <Content />
+    <div class="article-content">
+      <Content />
+    </div>
 
     <div class="flex gap-4">
       <a href="/"> &#8592; Back to Home</a>

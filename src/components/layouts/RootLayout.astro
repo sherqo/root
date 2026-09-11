@@ -1,6 +1,7 @@
 ---
 // The Root Layout with all global rules
 import '@/global.css';
+import Font from 'astro/components/Font.astro';
 
 export interface Props {
   title?: string;
@@ -18,11 +19,15 @@ let {
 
 title += ' ' + env.PUBLIC_POSTFIX;
 description += ' ' + env.PUBLIC_POSTFIX;
+
+const isArabic = Astro.url.pathname === '/ar' || Astro.url.pathname.startsWith('/ar/');
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang={isArabic ? 'ar' : 'en'} dir={isArabic ? 'rtl' : 'ltr'} class="dark">
   <head>
+    <Font cssVariable="--font-inter" preload />
+    {isArabic && <Font cssVariable="--font-noto-sans-arabic" preload />}
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
