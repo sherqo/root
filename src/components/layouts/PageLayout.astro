@@ -8,53 +8,35 @@ export interface Props {
   ogImage?: string;
   noindex?: boolean;
   footer?: boolean;
-  layout?: 'default' | 'home';
 }
 
-const { title, description, ogImage, noindex, footer = true, layout = 'default' } = Astro.props as Props;
+const { title, description, ogImage, noindex, footer = true } = Astro.props as Props;
 ---
 
 <RootLayout title={title} description={description} ogImage={ogImage} noindex={noindex}>
-  <main class:list={['page-container', { 'page-container-home': layout === 'home' }]}>
-    <slot />
-  </main>
-  {
-    footer && (
-      <div class="footer-container">
-        <Footer />
-      </div>
-    )
-  }
+  <div class="site-container">
+    <main>
+      <slot />
+    </main>
+    {footer && <Footer />}
+  </div>
 </RootLayout>
 
 <style>
-  .page-container,
-  .footer-container {
+  .site-container {
     box-sizing: border-box;
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: 16px;
-    padding-left: 16px;
+    margin: 96px auto 64px;
+    padding: 0 16px;
     width: 100%;
     max-width: 680px;
   }
 
-  .page-container {
-    flex: 1;
-    margin-top: 48px;
-    margin-bottom: 64px;
-  }
-
-  .page-container-home {
-    margin-top: clamp(48px, 16vh, 160px);
-  }
-
-  .footer-container {
+  .site-container main {
     margin-bottom: 64px;
   }
 
   @media (max-width: 720px) {
-    .page-container-home {
+    .site-container {
       margin-top: 48px;
     }
   }
