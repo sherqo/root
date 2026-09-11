@@ -1,43 +1,30 @@
 ---
 import PageLayout from '@/components/layouts/PageLayout.astro';
-import ThemeToggler from '@/components/ThemeToggler.astro';
 ---
 
-<PageLayout title="Sharqawy Wael" description="Sharqawy Wael — software engineer and systems builder." footer={false}>
-  <div>
-    <header class="home-intro">
-      <h1>Hi, I'm Sharqawy Wael, aka Sherqo.</h1>
-      <p>I love building software, understanding how systems work, and writing about what I learn.</p>
-    </header>
+<PageLayout title="Sharqawy Wael" description="Sharqawy Wael — software engineer and systems builder.">
+  <header>
+    <h1 class="font-semibold">Hi, I'm Sharqawy Wael (aka Sherqo)</h1>
+    <p class="mt-0.75">I love building software, understanding how systems work, and writing about what I learn.</p>
+  </header>
 
-    <p class="home-current-work">
-      I'm currently building <a href="https://yaleeq.net" target="_blank" rel="noopener noreferrer">Yaleeq</a>, an internship-finding
-      platform built by students for students.
-    </p>
+  <p class="mt-5">
+    I'm currently building <a href="https://yaleeq.net" target="_blank" rel="noopener noreferrer">Yaleeq</a>, an internship-finding platform
+    built by students for students.
+  </p>
 
-    <section class="home-work" aria-labelledby="work-heading">
-      <h2 id="work-heading">What I've worked on so far...</h2>
-      <div class="home-work-list">
-        <p>– I interned at <a href="/journal/siemens">Siemens EDA</a>, building internal tooling for hardware verification workflows.</p>
-        <p>
-          – I built <a href="https://github.com/sherqo/raft" target="_blank" rel="noopener noreferrer">Raft</a>, an implementation of the
-          distributed consensus algorithm.
-        </p>
-      </div>
-    </section>
+  <section class="mt-5" aria-labelledby="work-heading">
+    <h2 id="work-heading" class="text-muted">What I've worked on so far...</h2>
+    <div class="mt-1 grid gap-4 leading-[1.3]">
+      <p>– I interned at <a href="/journal/siemens">Siemens EDA</a>, building internal tooling for hardware verification workflows.</p>
+      <p>
+        – I built <a href="https://github.com/sherqo/raft" target="_blank" rel="noopener noreferrer">Raft</a>, an implementation of the
+        distributed consensus algorithm.
+      </p>
+    </div>
+  </section>
 
-    <section class="home-journal" aria-labelledby="journal-heading">
-      <p id="journal-heading">I also write some <a href="/journal">stuff</a> about software, systems, and things I'm figuring out.</p>
-    </section>
-
-    <nav class="home-links" aria-label="Elsewhere">
-      <a href="mailto:sherqo@sherqo.me">email</a>
-      <a href="https://github.com/sherqo" target="_blank" rel="noopener noreferrer">github</a>
-      <a href="https://x.com/sharqawycs" target="_blank" rel="noopener noreferrer">x</a>
-      <a href="https://linkedin.com/in/sharqawycs" target="_blank" rel="noopener noreferrer">linkedin</a>
-      <a href="https://youtube.com/@sharqawycs" target="_blank" rel="noopener noreferrer">youtube</a>
-      <a href="/resume" target="_blank" rel="noopener noreferrer">résumé</a>
-      <ThemeToggler />
-    </nav>
-  </div>
+  <section class="mt-8" aria-labelledby="journal-heading">
+    <p id="journal-heading">I also write some <a href="/journal">stuff</a> about software, systems, and things I'm figuring out.</p>
+  </section>
 </PageLayout>

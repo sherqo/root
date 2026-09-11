@@ -1,43 +1,57 @@
 ---
-import RootLayout from '@/components/layouts/RootLayout.astro';
-import Footer from '@/components/Footer.astro';
+// The Root Layout with all global rules
+import '@/global.css';
+import Font from 'astro/components/Font.astro';
+import Footer from '../Footer.astro';
 
 export interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
   noindex?: boolean;
-  footer?: boolean;
 }
 
-const { title, description, ogImage, noindex, footer = true } = Astro.props as Props;
+const env = import.meta.env;
+
+let {
+  title = env.PUBLIC_DEFAULT_TITLE,
+  description = env.PUBLIC_DEFAULT_DESCRIPTION,
+  ogImage = env.PUBLIC_BASE_URL + env.PUBLIC_OG_IMAGE,
+  noindex = false,
+} = Astro.props as Props;
+
+title += ' ' + env.PUBLIC_POSTFIX;
+description += ' ' + env.PUBLIC_POSTFIX;
 ---
 
-<RootLayout title={title} description={description} ogImage={ogImage} noindex={noindex}>
-  <div class="site-container">
-    <main>
-      <slot />
-    </main>
-    {footer && <Footer />}
-  </div>
-</RootLayout>
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <Font cssVariable="--font-inter" preload />
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-<style>
-  .site-container {
-    box-sizing: border-box;
-    margin: 96px auto 64px;
-    padding: 0 16px;
-    width: 100%;
-    max-width: 680px;
-  }
+    <title>{title}</title>
+    <link rel="canonical" href={Astro.url} />
 
-  .site-container main {
-    margin-bottom: 64px;
-  }
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={Astro.url} />
 
-  @media (max-width: 720px) {
-    .site-container {
-      margin-top: 48px;
-    }
-  }
-</style>
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+  </head>
+
+  <body
+    class="font-primary text-foreground bg-background mx-auto my-34 max-w-xl text-base leading-[1.7] antialiased max-[672px]:my-12 max-[608px]:mx-4">
+    <slot />
+    <Footer />
+  </body>
+</html>

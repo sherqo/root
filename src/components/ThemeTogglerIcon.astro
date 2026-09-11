@@ -1,0 +1,28 @@
+---
+import { Sun, Moon } from '@/components/icons/index.astro';
+---
+
+<button id="tt" class="hover:text-primary text-foreground h-6 w-6 cursor-pointer" aria-label="Theme toggle button">
+  <Moon class="hidden" />
+  <Sun class="hidden" />
+</button>
+
+<script is:inline>
+  function t() {
+    let b = document.getElementById('tt'),
+      s = b.querySelectorAll('svg'),
+      d = localStorage.t === 'd';
+    const u = function () {
+      document.documentElement.classList.toggle('dark', d);
+      s[0].classList.toggle('hidden', !d);
+      s[1].classList.toggle('hidden', d);
+    };
+    b.onclick = function () {
+      d = !d;
+      localStorage.t = d ? 'd' : 'l';
+      u();
+    };
+    u();
+  }
+  t();
+</script>

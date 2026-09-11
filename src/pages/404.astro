@@ -3,9 +3,6 @@ import PageLayout from '@/components/layouts/PageLayout.astro';
 import PageHeader from '@/components/PageHeader.astro';
 ---
 
-<PageLayout title="404 - Not Found" description="Page not found.">
-  <PageHeader>404 - Not Found</PageHeader>
-  <div>
-    <a href="/">Back to Home</a>
-  </div>
+<PageLayout title="404 - Not Found" description="Page not found." noindex>
+  <PageHeader subtitle="Nothing to show here, bro :(">404 - Not Found</PageHeader>
 </PageLayout>

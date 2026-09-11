@@ -1,15 +1,32 @@
 ---
-import ThemeToggler from '@/components/ThemeToggler.astro';
-const mail = 'sherqo@sherqo.me';
+import ThemeToggler from './ThemeToggler.astro';
+
+const mail = 'hi@sherqo.me';
 ---
 
-<footer class="pb-safe">
-  <nav class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm" aria-label="Social links">
-    <a href={`mailto:${mail}`}>email</a>
-    <a href="https://github.com/sherqo" target="_blank" rel="noopener noreferrer">github</a>
-    <a href="https://x.com/sharqawycs" target="_blank" rel="noopener noreferrer">x</a>
-    <a href="https://linkedin.com/in/sharqawycs" target="_blank" rel="noopener noreferrer">linkedin</a>
-    <a href="https://youtube.com/@sharqawycs" target="_blank" rel="noopener noreferrer">youtube</a>
-    <ThemeToggler />
-  </nav>
+<footer
+  id="footer"
+  aria-label="Social links"
+  class="mt-16 flex flex-nowrap items-center gap-x-3 overflow-hidden text-sm whitespace-nowrap [&_a]:no-underline [&_a::after]:opacity-60 [&_a::after]:content-[']'] [&_a::before]:opacity-60 [&_a::before]:content-['['] [&_a:hover]:underline">
+  {Astro.url.pathname !== '/' && <a href="/">home</a>}
+  <a href={`mailto:${mail}`}>{mail}</a>
+
+  <a href="https://github.com/sherqo" id="d-git" target="_blank" rel="noopener noreferrer">github</a>
+  <a href="https://x.com/sharqawycs" id="d-x" target="_blank" rel="noopener noreferrer">x</a>
+  <a href="https://resume.sherqo.me/Sharqawy_Wael_Resume.pdf" id="d-x" target="_blank" rel="noopener noreferrer">resume</a>
+  <a href="https://linkedin.com/in/sharqawycs" id="d-in" target="_blank" rel="noopener noreferrer">linkedin</a>
+
+  <ThemeToggler />
 </footer>
+
+<script is:inline>
+  const nav = document.getElementById('footer');
+  const dropOrder = ['d-yt', 'd-in', 'd-x', 'd-git'].map(id => document.getElementById(id));
+
+  new ResizeObserver(() => {
+    dropOrder.forEach(el => el && (el.style.display = ''));
+    for (let el of dropOrder) {
+      if (nav.scrollWidth > nav.clientWidth && el) el.style.display = 'none';
+    }
+  }).observe(nav.parentElement);
+</script>

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import PageLayout from '@/components/layouts/PageLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
 
 const journals = (await getCollection('journal'))
   .filter(journal => !journal.data.hidden)
@@ -9,18 +10,16 @@ const dateFormatter = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 
 ---
 
 <PageLayout title="Journal" description="Writing about software, systems, and things I'm figuring out.">
-  <div class="space-y-8">
-    <h1 class="journal-title font-extrabold">Journal</h1>
-    <p>Some writing about software, systems, and things I'm figuring out.</p>
+  <PageHeader subtitle="Some writing about software, systems, and things I'm figuring out.">Journal</PageHeader>
 
-    <div class="journal-list">
-      {
-        journals.map(journal => (
-          <a href={`/journal/${journal.id}`}>
-            <time datetime={journal.data.date.toISOString()}>{dateFormatter.format(journal.data.date)}</time> - {journal.data.title}
-          </a>
-        ))
-      }
-    </div>
+  <div
+    class="[&_time]:text-muted [&_a:hover_time]:text-primary mt-8 grid gap-1 [&_a]:no-underline [&_a:focus-visible]:underline [&_a:hover]:underline">
+    {
+      journals.map(journal => (
+        <a href={`/journal/${journal.id}`}>
+          <time datetime={journal.data.date.toISOString()}>{dateFormatter.format(journal.data.date)}</time> - {journal.data.title}
+        </a>
+      ))
+    }
   </div>
 </PageLayout>

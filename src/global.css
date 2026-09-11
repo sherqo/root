@@ -5,7 +5,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* text selection colors */
 ::selection {
   background-color: var(--primary);
   color: var(--primary-foreground);
@@ -14,27 +13,21 @@ html {
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-
   --color-muted: var(--muted);
   --color-border: var(--border);
-
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-serif: 'Times New Roman', serif;
   --font-mono: monospace;
-
   --font-primary: var(--font-sans);
 }
 
 :root {
   --background: #fdfdfb;
   --foreground: #181816;
-
   --primary: #7cb518;
   --primary-foreground: #171a14;
-
   --muted: #8b8c88;
   --border: #e5e5e5;
 }
@@ -42,10 +35,8 @@ html {
 .dark {
   --background: #262626;
   --foreground: #ffffff;
-
   --primary: #a3e635;
   --primary-foreground: #171a14;
-
   --muted: #878787;
   --border: #404040;
 }
@@ -56,24 +47,16 @@ html {
   }
 
   body {
-    @apply flex min-h-screen flex-col;
     margin: 0;
-    width: 100%;
-    @apply font-primary text-foreground bg-background antialiased;
-    font-size: 1rem;
-    line-height: 1.7;
-    letter-spacing: 0;
-    text-rendering: optimizeLegibility;
-  }
-
-  body :where(*) {
-    font-weight: 400;
   }
 
   body a {
-    color: inherit;
     text-decoration: underline;
     text-underline-offset: 3px;
+  }
+
+  body a:hover {
+    color: var(--primary);
   }
 
   body h1,
@@ -87,176 +70,8 @@ html {
     font-weight: 500;
   }
 
-  body blockquote {
-    margin-block: 1.6667em;
-    border-inline-start: 0.25rem solid var(--border);
-    padding-inline-start: 1em;
-    font-style: italic;
-    font-weight: 500;
-  }
-
   body img {
     max-width: 100%;
     height: auto;
-  }
-
-  .home-intro h1 {
-    font-weight: 500;
-  }
-
-  .home-intro p {
-    margin-top: 3px;
-  }
-
-  .home-current-work,
-  .home-work {
-    margin-top: 20px;
-  }
-
-  .home-work h2 {
-    color: var(--muted);
-  }
-
-  .home-work-list {
-    display: grid;
-    gap: 16px;
-    margin-top: 4px;
-    line-height: 1.3;
-  }
-
-  .home-journal {
-    margin-top: 32px;
-  }
-
-  .journal-list {
-    display: grid;
-    gap: 4px;
-    margin-top: 2rem;
-  }
-
-  .journal-list a {
-    text-decoration: none;
-  }
-
-  .journal-list a:hover,
-  .journal-list a:focus-visible {
-    text-decoration: underline;
-  }
-
-  .journal-list time {
-    color: var(--muted);
-  }
-
-  .home-links {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-    margin-top: 32px;
-  }
-
-  .home-links a {
-    color: var(--primary);
-    text-decoration: none;
-  }
-
-  .home-links a:hover,
-  .home-links a:focus-visible {
-    color: var(--primary);
-    text-decoration: underline;
-  }
-
-  .page-header h1,
-  .journal-title {
-    font-weight: 800;
-    font-size: 2rem;
-    line-height: 1;
-  }
-
-  .page-header .lead {
-    margin-block: 1.0909em;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-
-  .article-content {
-    width: 100%;
-    font-size: 1rem;
-    line-height: 1.7;
-  }
-
-  .article-content p {
-    margin-block: 1rem;
-  }
-
-  .article-content h2 {
-    margin-block: 1.5rem 0.5rem;
-    font-weight: 700;
-    font-size: 1.25rem;
-    line-height: 1.2;
-  }
-
-  .article-content h3 {
-    margin-block: 1.25rem 0.5rem;
-    font-weight: 600;
-    font-size: 1.125rem;
-    line-height: 1.3;
-  }
-
-  .article-content strong {
-    font-weight: 600;
-  }
-
-  .article-content ul,
-  .article-content ol {
-    margin-block: 1.3333em;
-    padding-inline-start: 1.5556em;
-  }
-
-  .article-content ul {
-    list-style-type: disc;
-  }
-
-  .article-content ol {
-    list-style-type: decimal;
-  }
-
-  .article-content li {
-    margin-block: 0.6667em;
-  }
-
-  .article-content blockquote {
-    margin-block: 1.6667em;
-    border-inline-start: 0.25rem solid var(--border);
-    padding-inline-start: 1em;
-    font-style: italic;
-    font-weight: 500;
-  }
-
-  .article-content hr {
-    margin-block: 3.1111em;
-    border-top: 1px solid var(--border);
-  }
-
-  .article-content > :first-child {
-    margin-top: 0;
-  }
-
-  .article-content > :last-child {
-    margin-bottom: 0;
-  }
-
-  .article-content hr + *,
-  .article-content h2 + *,
-  .article-content h3 + *,
-  .article-content h4 + * {
-    margin-top: 0;
-  }
-}
-
-/* Safe area padding for mobile devices */
-@layer utilities {
-  .pb-safe {
-    padding-bottom: env(safe-area-inset-bottom);
   }
 }

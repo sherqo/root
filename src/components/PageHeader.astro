@@ -6,9 +6,9 @@ interface PageHeaderProps {
 const { subtitle } = Astro.props as PageHeaderProps;
 ---
 
-<header class="page-header my-8">
-  <h1 class="mb-4 font-extrabold">
+<header class="my-8">
+  <h1 class="mb-4 text-[2rem] leading-none font-extrabold">
     <slot />
   </h1>
-  {subtitle && <p class="text-muted lead mb-4">{subtitle}</p>}
+  {subtitle && <p class="text-muted mb-4 text-base leading-6">{subtitle}</p>}
 </header>
