@@ -16,8 +16,11 @@ const dateFormatter = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 
     class="[&_time]:text-muted [&_a:hover_time]:text-primary mt-8 grid gap-1 [&_a]:no-underline [&_a:focus-visible]:underline [&_a:hover]:underline">
     {
       journals.map(journal => (
-        <a href={`/journal/${journal.id}`}>
-          <time datetime={journal.data.date.toISOString()}>{dateFormatter.format(journal.data.date)}</time> - {journal.data.title}
+        <a href={`/journal/${journal.id}`} class="flex min-w-0">
+          <time datetime={journal.data.date.toISOString()} class="shrink-0">
+            {dateFormatter.format(journal.data.date)}
+          </time>
+          <span class="min-w-0 truncate">&nbsp;- {journal.data.title}</span>
         </a>
       ))
     }
