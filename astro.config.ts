@@ -67,12 +67,4 @@ export default defineConfig({
       },
     },
   },
-
-  // Astro md
-  markdown: {
-    shikiConfig: {
-      theme: 'github-dark',
-      wrap: true,
-    },
-  },
 });

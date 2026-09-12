@@ -1,6 +1,6 @@
 ---
 import ThemeToggler from './ThemeToggler.astro';
-
+import { links } from '@/lib/links';
 const mail = 'hi@sherqo.me';
 ---
 
@@ -11,10 +11,10 @@ const mail = 'hi@sherqo.me';
   {Astro.url.pathname !== '/' && <a href="/">home</a>}
   <a href={`mailto:${mail}`}>{mail}</a>
 
-  <a href="https://github.com/sherqo" id="d-git" target="_blank" rel="noopener noreferrer">github</a>
-  <a href="https://x.com/sharqawycs" id="d-x" target="_blank" rel="noopener noreferrer">x</a>
-  <a href="https://resume.sherqo.me/Sharqawy_Wael_Resume.pdf" id="d-x" target="_blank" rel="noopener noreferrer">resume</a>
-  <a href="https://linkedin.com/in/sharqawycs" id="d-in" target="_blank" rel="noopener noreferrer">linkedin</a>
+  <a href={links['github']} id="d-git" target="_blank" rel="noopener noreferrer">github</a>
+  <a href={links['x']} id="d-x" target="_blank" rel="noopener noreferrer">x</a>
+  <a href={links['resume']} id="d-x" target="_blank" rel="noopener noreferrer">resume</a>
+  <a href={links['linkedin']} id="d-in" target="_blank" rel="noopener noreferrer">linkedin</a>
 
   <ThemeToggler />
 </footer>

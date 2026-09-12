@@ -32,10 +32,10 @@
   Cache-Control: public, max-age=31536000, immutable
 
 /
-  Cache-Control: public, max-age=31536000, s-maxage=31536000, immutable
+  Cache-Control: public, max-age=0, s-maxage=604800, stale-while-revalidate=86400
 
 /journal/*
-  Cache-Control: public, max-age=31536000, s-maxage=31536000, immutable
+  Cache-Control: public, max-age=0, s-maxage=604800, stale-while-revalidate=86400
 
 /*
-  Cache-Control: public, max-age=31536000, s-maxage=31536000, immutable
+  Cache-Control: public, max-age=0, s-maxage=604800, stale-while-revalidate=86400
