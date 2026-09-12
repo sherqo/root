@@ -6,7 +6,11 @@ import PageHeader from '@/components/PageHeader.astro';
 const journals = (await getCollection('journal'))
   .filter(journal => !journal.data.hidden)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-const dateFormatter = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+const dateFormatter = new Intl.DateTimeFormat('ja-JP', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+});
 ---
 
 <PageLayout title="Journal" description="Writing about software, systems, and things I'm figuring out.">
