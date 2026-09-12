@@ -13,7 +13,7 @@ const mail = 'hi@sherqo.me';
 
   <a href={links['github']} id="d-git" target="_blank" rel="noopener noreferrer">github</a>
   <a href={links['x']} id="d-x" target="_blank" rel="noopener noreferrer">x</a>
-  <a href={links['resume']} id="d-x" target="_blank" rel="noopener noreferrer">resume</a>
+  <a href={links['resume']} id="d-resume" target="_blank" rel="noopener noreferrer">resume</a>
   <a href={links['linkedin']} id="d-in" target="_blank" rel="noopener noreferrer">linkedin</a>
 
   <ThemeToggler />
@@ -21,7 +21,7 @@ const mail = 'hi@sherqo.me';
 
 <script is:inline>
   const nav = document.getElementById('footer');
-  const dropOrder = ['d-yt', 'd-in', 'd-x', 'd-git'].map(id => document.getElementById(id));
+  const dropOrder = ['d-yt', 'd-in', 'd-x', 'd-resume', 'd-git'].map(id => document.getElementById(id));
 
   new ResizeObserver(() => {
     dropOrder.forEach(el => el && (el.style.display = ''));
