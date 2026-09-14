@@ -27,5 +27,21 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    { "source": "/blog", "destination": "/journal", "permanent": true },
+    { "source": "/cv", "destination": "https://resume.sherqo.me/Sharqawy_Wael_Resume.pdf", "permanent": true },
+    { "source": "/resume", "destination": "https://resume.sherqo.me/Sharqawy_Wael_Resume.pdf", "permanent": true },
+    { "source": "/github", "destination": "https://github.com/sherqo", "permanent": true },
+    { "source": "/gh", "destination": "https://github.com/sherqo", "permanent": true },
+    { "source": "/x", "destination": "https://x.com/sharqawycs", "permanent": true },
+    { "source": "/twitter", "destination": "https://x.com/sharqawycs", "permanent": true },
+    { "source": "/youtube", "destination": "https://youtube.com/@sharqawycs", "permanent": true },
+    { "source": "/yt", "destination": "https://youtube.com/@sharqawycs", "permanent": true },
+    { "source": "/linkedin", "destination": "https://linkedin.com/in/sharqawycs", "permanent": true },
+    { "source": "/li", "destination": "https://linkedin.com/in/sharqawycs", "permanent": true },
+    { "source": "/in", "destination": "https://linkedin.com/in/sharqawycs", "permanent": true },
+    { "source": "/discord", "destination": "https://discord.gg/sharqawycs", "permanent": true },
+    { "source": "/dis", "destination": "https://discord.gg/sharqawycs", "permanent": true }
   ]
 }

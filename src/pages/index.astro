@@ -1,10 +1,22 @@
 ---
 import PageLayout from '@/components/PageLayout.astro';
+
+const siteUrl = Astro.url.origin;
 ---
 
-<PageLayout title="Sharqawy Wael" description="Sharqawy Wael — software engineer and systems builder.">
+<PageLayout
+  description="Sharqawy Wael, known as Sherqo and sharqawycs online, is a software engineer and systems builder focused on distributed systems and developer tools."
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': ['ProfilePage', 'WebSite'],
+    '@id': `${siteUrl}/#website`,
+    url: siteUrl,
+    name: 'Sharqawy Wael (Sherqo) - sharqawycs',
+    description: 'Personal site and technical journal by Sharqawy Wael.',
+    mainEntity: { '@id': `${siteUrl}/#person` },
+  }}>
   <header>
-    <h1 class="font-semibold">Yo, I'm Sharqawy (aka Sherqo)</h1>
+    <h1 class="font-semibold">Yo, I'm Sharqawy <span class="sr-only">Wael</span> (aka Sherqo)<span class="sr-only"> - sharqawycs</span></h1>
     <p class="mt-0.75">
       I love building <a href="/journal/software">software</a>, understanding how things work, and writing about what I learn. I'm currently
       doing my <a href="journal/bachelor">bachelor's</a> in Computer &amp AI Engineering, with a minor in Distributed Systems.

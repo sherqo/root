@@ -15,13 +15,30 @@ export async function getStaticPaths() {
 
 const { journal } = Astro.props as { journal: CollectionEntry<'journal'> };
 const { Content } = await render(journal);
+const siteUrl = Astro.url.origin;
+const description = journal.data.description || journal.data.title;
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  '@id': Astro.url.href,
+  headline: journal.data.title,
+  description,
+  url: Astro.url.href,
+  mainEntityOfPage: Astro.url.href,
+  image: Astro.url.origin + import.meta.env.PUBLIC_OG_IMAGE,
+  author: { '@id': `${siteUrl}/#person` },
+  publisher: { '@id': `${siteUrl}/#person` },
+  ...(journal.data.date && { datePublished: journal.data.date.toISOString() }),
+  ...(journal.data.tags && { keywords: journal.data.tags.join(', ') }),
+};
 ---
 
 <PageLayout
   title={journal.data.title}
-  description={journal.data.description || journal.data.title}
+  description={description}
   noindex={journal.data.hidden}
-  ogImage={import.meta.env.PUBLIC_BASE_URL + import.meta.env.PUBLIC_OG_IMAGE}>
+  ogImage={Astro.url.origin + import.meta.env.PUBLIC_OG_IMAGE}
+  structuredData={articleSchema}>
   <article>
     <PageHeader subtitle={journal.data.description} date={journal.data.date}>{journal.data.title}</PageHeader>
     <div

@@ -9,19 +9,42 @@ export interface Props {
   description?: string;
   ogImage?: string;
   noindex?: boolean;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const env = import.meta.env;
+const identity = 'Sharqawy Wael (Sherqo) - sharqawycs';
+const siteUrl = Astro.url.origin;
 
 let {
-  title = env.PUBLIC_DEFAULT_TITLE,
+  title,
   description = env.PUBLIC_DEFAULT_DESCRIPTION,
-  ogImage = env.PUBLIC_BASE_URL + env.PUBLIC_OG_IMAGE,
+  ogImage = Astro.url.origin + env.PUBLIC_OG_IMAGE,
   noindex = false,
+  structuredData,
 } = Astro.props as Props;
 
-title += ' ' + env.PUBLIC_POSTFIX;
-description += ' ' + env.PUBLIC_POSTFIX;
+title = title ? `${title} | ${identity}` : identity;
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${siteUrl}/#person`,
+  name: 'Sharqawy Wael',
+  alternateName: ['Sherqo', 'sharqawycs'],
+  url: siteUrl,
+  jobTitle: 'Software Engineer and Systems Builder',
+  description,
+  sameAs: [
+    'https://github.com/sherqo',
+    'https://x.com/sharqawycs',
+    'https://youtube.com/@sharqawycs',
+    'https://linkedin.com/in/sharqawycs',
+  ],
+  knowsAbout: ['Software engineering', 'Distributed systems', 'Developer tools', 'Computer engineering', 'Backend Development'],
+};
+
+const schemas = [person, ...(structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]) : [])];
 ---
 
 <!doctype html>
@@ -47,6 +70,7 @@ description += ' ' + env.PUBLIC_POSTFIX;
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
   </head>
 
   <body

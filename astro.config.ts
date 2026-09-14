@@ -6,9 +6,14 @@ import { defineConfig, fontProviders } from 'astro/config';
 import { fileURLToPath, URL } from 'node:url';
 import compress from 'vite-plugin-compression';
 import htmlMinifier from 'vite-plugin-html-minifier';
+import { links } from './src/lib/links';
+
+const redirectPaths = new Set(Object.keys(links).map(slug => `/${slug}/`));
 
 const sitemapConfig = sitemap({
   filenameBase: 'sitemap',
+  // Every route from the short-link map is a redirect, never an indexable page.
+  filter: page => !redirectPaths.has(new URL(page).pathname),
 });
 
 const htmlMin = htmlMinifier({

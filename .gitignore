@@ -24,7 +24,6 @@ pnpm-debug.log*
 .idea/
 
 /public/sitemap.xml
-/public/robots.txt
 
 # wrangler files
 .wrangler

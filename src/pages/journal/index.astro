@@ -7,9 +7,21 @@ import { dateFormatter } from '@/lib/utils';
 const journals = (await getCollection('journal'))
   .filter(journal => !journal.data.hidden)
   .sort((a, b) => (b.data.date?.getTime() ?? -Infinity) - (a.data.date?.getTime() ?? -Infinity));
+const siteUrl = Astro.url.origin;
 ---
 
-<PageLayout title="Journal" description="Writing about software, systems, and things I'm figuring out.">
+<PageLayout
+  title="Journal"
+  description="Writing by Sharqawy Wael (Sherqo / sharqawycs) about software, systems, and things I'm figuring out."
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    '@id': `${siteUrl}/journal/#blog`,
+    url: Astro.url.href,
+    name: "Sharqawy Wael's blog",
+    description: 'Writing about software, systems, and things I am figuring out.',
+    author: { '@id': `${siteUrl}/#person` },
+  }}>
   <PageHeader subtitle="Some writing about software, systems, and things I'm figuring out.">Journal</PageHeader>
 
   <div
