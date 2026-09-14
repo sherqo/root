@@ -2,15 +2,11 @@
 import { getCollection } from 'astro:content';
 import PageLayout from '@/components/PageLayout.astro';
 import PageHeader from '@/components/PageHeader.astro';
+import { dateFormatter } from '@/lib/utils';
 
 const journals = (await getCollection('journal'))
   .filter(journal => !journal.data.hidden)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-const dateFormatter = new Intl.DateTimeFormat('ja-JP', {
-  year: 'numeric',
-  month: '2-digit',
-  day: '2-digit',
-});
 ---
 
 <PageLayout title="Journal" description="Writing about software, systems, and things I'm figuring out.">

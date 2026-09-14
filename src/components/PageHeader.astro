@@ -1,9 +1,11 @@
 ---
+import { dateFormatter } from '@/lib/utils';
 interface PageHeaderProps {
   subtitle?: string;
+  date?: Date;
 }
 
-const { subtitle } = Astro.props as PageHeaderProps;
+const { subtitle, date } = Astro.props as PageHeaderProps;
 ---
 
 <header class="my-8">
@@ -11,4 +13,11 @@ const { subtitle } = Astro.props as PageHeaderProps;
     <slot />
   </h1>
   {subtitle && <p class="text-muted mb-4 text-base leading-6">{subtitle}</p>}
+  {
+    date && (
+      <time datetime={date.toISOString()} class="text-muted block text-base">
+        {dateFormatter.format(date)}
+      </time>
+    )
+  }
 </header>
