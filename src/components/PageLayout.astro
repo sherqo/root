@@ -1,11 +1,14 @@
 ---
 // The Root Layout with all global rules
 import '@/global.css';
+import Font from 'astro/components/Font.astro';
+import Footer from './Footer.astro';
 
 export interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  noindex?: boolean;
 }
 
 const env = import.meta.env;
@@ -14,6 +17,7 @@ let {
   title = env.PUBLIC_DEFAULT_TITLE,
   description = env.PUBLIC_DEFAULT_DESCRIPTION,
   ogImage = env.PUBLIC_BASE_URL + env.PUBLIC_OG_IMAGE,
+  noindex = false,
 } = Astro.props as Props;
 
 title += ' ' + env.PUBLIC_POSTFIX;
@@ -23,11 +27,13 @@ description += ' ' + env.PUBLIC_POSTFIX;
 <!doctype html>
 <html lang="en" class="dark">
   <head>
+    <Font cssVariable="--font-inter" preload />
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark light" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <title>{title}</title>
     <link rel="canonical" href={Astro.url} />
@@ -43,7 +49,9 @@ description += ' ' + env.PUBLIC_POSTFIX;
     <meta name="twitter:image" content={ogImage} />
   </head>
 
-  <body>
+  <body
+    class="font-primary text-foreground bg-background mx-auto my-34 max-w-xl text-base leading-[1.7] antialiased max-[672px]:my-12 max-[608px]:mx-4">
     <slot />
+    <Footer />
   </body>
 </html>

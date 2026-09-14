@@ -15,8 +15,7 @@ export const links: Record<string, string> = {
   discord: 'https://discord.gg/sharqawycs',
   dis: 'https://discord.gg/sharqawycs',
 
-  blog: '/',
-  journal: '/',
+  blog: '/journal',
 
   cv: 'https://resume.sherqo.me/Sharqawy_Wael_Resume.pdf',
   resume: 'https://resume.sherqo.me/Sharqawy_Wael_Resume.pdf',

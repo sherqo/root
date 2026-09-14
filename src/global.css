@@ -1,80 +1,76 @@
 @import 'tailwindcss';
-@plugin '@tailwindcss/typography';
 @custom-variant dark (&:where(.dark, .dark *));
-
-html {
-  scroll-behavior: smooth;
-}
-
-/* text selection colors */
-::selection {
-  background-color: var(--primary);
-  color: var(--primary-foreground);
-}
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-
   --color-muted: var(--muted);
   --color-border: var(--border);
-
-  --font-sans:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-serif: 'Times New Roman', serif;
   --font-mono: monospace;
-
   --font-primary: var(--font-sans);
 }
 
 :root {
-  --background: #fafdf5;
-  --foreground: #171a14;
-
+  --background: #fdfdfb;
+  --foreground: #181816;
   --primary: #7cb518;
   --primary-foreground: #171a14;
-
-  --muted: #5f6658;
-  --border: #d6dccd;
+  --muted: #8b8c88;
+  --border: #e5e5e5;
 }
 
 .dark {
-  --background: #080c06;
-  --foreground: #f2f5ed;
-
+  --background: #262626;
+  --foreground: #ffffff;
   --primary: #a3e635;
   --primary-foreground: #171a14;
-
-  --muted: #858d7e;
-  --border: #272d23;
+  --muted: #878787;
+  --border: #404040;
 }
+
 @layer base {
-  * {
-    @apply border-border;
+  html {
+    scroll-behavior: smooth;
   }
 
-  /* Prose */
-  body {
-    @apply prose prose-neutral dark:prose-invert prose-lg; /* Prose base styles */
-    @apply prose-a:text-primary; /* Links */
-    @apply prose-hr:border-border max-w-full; /* Horizontal rules */
-    @apply prose-img:my-4; /* Images */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
-  /* Last to override prose */
-  body {
-    @apply mx-auto flex min-h-screen max-w-full flex-col;
-    @apply font-primary text-foreground bg-background antialiased;
+  ::selection {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
   }
-}
 
-/* Safe area padding for mobile devices */
-@layer utilities {
-  .pb-safe {
-    padding-bottom: env(safe-area-inset-bottom);
+  a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  a:hover {
+    color: var(--primary);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  strong {
+    font-weight: 500;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }

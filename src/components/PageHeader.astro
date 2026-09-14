@@ -1,14 +1,23 @@
 ---
+import { dateFormatter } from '@/lib/utils';
 interface PageHeaderProps {
   subtitle?: string;
+  date?: Date;
 }
 
-const { subtitle } = Astro.props as PageHeaderProps;
+const { subtitle, date } = Astro.props as PageHeaderProps;
 ---
 
-<header class="my-8 text-center">
-  <h1 class="mb-4">
+<header class="my-8">
+  <h1 class="mb-4 text-[2rem] leading-none font-extrabold">
     <slot />
   </h1>
-  {subtitle && <p class="text-muted lead mb-4">{subtitle}</p>}
+  {subtitle && <p class="text-muted mb-4 text-base leading-6">{subtitle}</p>}
+  {
+    date && (
+      <time datetime={date.toISOString()} class="text-muted block text-base">
+        {dateFormatter.format(date)}
+      </time>
+    )
+  }
 </header>

@@ -1,0 +1,32 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import PageLayout from '@/components/PageLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+
+export async function getStaticPaths() {
+  const journals = await getCollection('journal');
+  return journals.map((journal: CollectionEntry<'journal'>) => {
+    return {
+      params: { slug: journal.id },
+      props: { journal },
+    };
+  });
+}
+
+const { journal } = Astro.props as { journal: CollectionEntry<'journal'> };
+const { Content } = await render(journal);
+---
+
+<PageLayout
+  title={journal.data.title}
+  description={journal.data.description || journal.data.title}
+  noindex={journal.data.hidden}
+  ogImage={import.meta.env.PUBLIC_BASE_URL + import.meta.env.PUBLIC_OG_IMAGE}>
+  <article>
+    <PageHeader subtitle={journal.data.description} date={journal.data.date}>{journal.data.title}</PageHeader>
+    <div
+      class="[&_blockquote]:border-border [&_hr]:border-border text-base leading-[1.7] [&_blockquote]:my-[1.6667em] [&_blockquote]:border-l-4 [&_blockquote]:pl-[1em] [&_blockquote]:font-medium [&_blockquote]:italic [&_h2]:mt-6 [&_h2]:mb-2 [&_h2]:text-xl [&_h2]:leading-[1.2] [&_h2]:font-bold [&_h2+*]:mt-0 [&_h3]:mt-5 [&_h3]:mb-2 [&_h3]:text-lg [&_h3]:leading-[1.3] [&_h3]:font-semibold [&_h3+*]:mt-0 [&_h4+*]:mt-0 [&_hr]:my-[3.1111em] [&_hr]:border-t [&_hr+*]:mt-0 [&_li]:my-[0.6667em] [&_ol]:my-[1.333em] [&_ol]:list-decimal [&_ol]:pl-[1.5556em] [&_p]:my-4 [&_strong]:font-semibold [&_ul]:my-[1.333em] [&_ul]:list-disc [&_ul]:pl-[1.5556em] [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
+      <Content />
+    </div>
+  </article>
+</PageLayout>

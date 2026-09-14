@@ -1,50 +1,32 @@
 ---
-import { getCollection } from 'astro:content';
-import PageLayout from '@/components/layouts/PageLayout.astro';
-import PageHeader from '@/components/PageHeader.astro';
-import type { Journal } from '@/lib/journal.type';
-
-const journals = await getCollection('journal');
-const rootJournals = journals.filter((j: Journal) => !j.id.includes('/') || j.id.endsWith('/index'));
-const sortedJournals = rootJournals.sort((a: Journal, b: Journal) => b.data.date.getTime() - a.data.date.getTime());
-const dateFormatter = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-
-const getJournalSlug = (journal: Journal) => {
-  const rawSlug = ('slug' in journal ? journal.slug : journal.id) ?? '';
-  return rawSlug.endsWith('/index') ? rawSlug.slice(0, -6) : rawSlug;
-};
+import PageLayout from '@/components/PageLayout.astro';
 ---
 
-{/* HOME PAGE '/' */}
-<PageLayout title="Home" description="Sharqawy — CS student, builder, and maker. Read my journal.">
-  <div class="space-y-16">
-    <PageHeader>Sharqawy Wael</PageHeader>
+<PageLayout title="Sharqawy Wael" description="Sharqawy Wael — software engineer and systems builder.">
+  <header>
+    <h1 class="font-semibold">Yo, I'm Sharqawy (aka Sherqo)</h1>
+    <p class="mt-0.75">
+      I love building <a href="/journal/software">software</a>, understanding how things work, and writing about what I learn. I'm currently
+      doing my <a href="journal/bachelor">bachelor's</a> in Computer &amp AI Engineering, with a minor in Distributed Systems.
+    </p>
+  </header>
 
-    <div class="space-y-6">
+  <section class="mt-5" aria-labelledby="work-heading">
+    <h2 id="work-heading" class="text-muted">Stuff I've worked on...</h2>
+    <div class="mt-1 grid gap-4 leading-[1.3]">
       <p>
-        I'm a Computer Engineering student, and this is my public space to share my work, thoughts, and everything I'm figuring out along
-        the way. My résumé is
-        <a href="/resume" target="_blank" rel="noopener noreferrer"> available</a>.
+        – I interned at <a href="/journal/siemens">Siemens EDA</a>, building highly scalable internal tooling for hardware verification
+        workflows.
+      </p>
+      <p>– <a href="/journal/yaleeq">Yaleeq</a>, an internship-finding platform, built by students for students.</p>
+      <p>
+        – I built <a href="https://github.com/sherqo/raft" target="_blank" rel="noopener noreferrer">Raft</a>, an implementation of the
+        distributed consensus algorithm.
       </p>
     </div>
+  </section>
 
-    <div>
-      <div class="bg-border my-12 h-px"></div>
-      {
-        sortedJournals.length === 0 ? (
-          <p>No posts yet.</p>
-        ) : (
-          <div class="not-prose flex flex-col leading-7">
-            {sortedJournals.map((journal: Journal) => (
-              <a
-                href={`/journal/${getJournalSlug(journal)}`}
-                class="text-foreground hover:text-primary focus:text-primary block truncate py-0.5! no-underline hover:underline focus:underline">
-                <time datetime={journal.data.date.toISOString()}>{dateFormatter.format(journal.data.date)}</time> - {journal.data.title}
-              </a>
-            ))}
-          </div>
-        )
-      }
-    </div>
-  </div>
+  <section class="mt-8" aria-labelledby="journal-heading">
+    <p id="journal-heading">I also write some <a href="/journal">stuff</a>.</p>
+  </section>
 </PageLayout>

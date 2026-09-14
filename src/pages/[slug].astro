@@ -1,0 +1,17 @@
+---
+import { links } from '../lib/links';
+
+export function getStaticPaths() {
+  return Object.keys(links).map(slug => ({ params: { slug } }));
+}
+
+const target = links[Astro.params.slug ?? ''] ?? '/';
+---
+
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+  </head>
+</html>
