@@ -5,12 +5,12 @@ description: 'A short account of my internship on the Virtual Ethernet team.'
 hidden: true
 ---
 
-I spent two months interning at Siemens EDA on the Virtual Ethernet team within Hardware Assisted Verification. I worked on internal tooling for hardware verification workflows and learned how much careful engineering goes into making complex systems observable.
+I spent two months interning at **Siemens EDA**, on the Virtual Ethernet team within Hardware Assisted Verification.
 
-I built a visualization library for interactive diagrams at 50k+ node scale. The diagrams represented hardware verification pipelines, so keeping the interface useful at that size required more than simply rendering more elements.
+I built a visualization library for interactive diagrams at **50k+ node scale**, representing hardware verification pipelines. The frontend used Web Workers to keep the UI responsive during heavy layout and validation, and I designed a real-time sync protocol between a C++ backend and React frontend so state changes didn't feel stuck.
 
-The frontend used Web Workers to keep the UI responsive during heavy layout and validation operations. I also designed a real-time synchronization protocol between a C++ backend and a React frontend, so changes could move between the two sides without making the interface feel stuck.
+I also built **bottleneck detection** on live performance metrics to detect and show slow parts of a workflow while it's running.
 
-Finally, I built bottleneck detection on live performance metrics. The goal was to make slow parts of a workflow visible while the system was running, rather than asking people to diagnose everything after the fact.
+Short internship, but it taught me a lot about the relationship between visualization, distributed state, and performance-sensitive tooling. It also taught me a lot about working on a team, communicating clearly, and what corporate life actually looks like, my first time experiencing it firsthand.
 
-It was a short internship, but it gave me a much better understanding of the relationship between visualization, distributed state, and performance-sensitive tooling.
+I also wrote about a [race condition](/journal/race-condition-in-a-frontend/) I ran into on this project.
