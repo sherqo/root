@@ -6,7 +6,7 @@ import { dateFormatter } from '@/lib/utils';
 
 const journals = (await getCollection('journal'))
   .filter(journal => !journal.data.hidden)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  .sort((a, b) => (b.data.date?.getTime() ?? -Infinity) - (a.data.date?.getTime() ?? -Infinity));
 ---
 
 <PageLayout title="Journal" description="Writing about software, systems, and things I'm figuring out.">
@@ -17,10 +17,12 @@ const journals = (await getCollection('journal'))
     {
       journals.map(journal => (
         <a href={`/journal/${journal.id}`} class="flex min-w-0">
-          <time datetime={journal.data.date.toISOString()} class="shrink-0">
-            {dateFormatter.format(journal.data.date)}
-          </time>
-          <span class="min-w-0 truncate">&nbsp;- {journal.data.title}</span>
+          {journal.data.date && (
+            <time datetime={journal.data.date.toISOString()} class="shrink-0">
+              {dateFormatter.format(journal.data.date)}
+            </time>
+          )}
+          <span class="min-w-0 truncate">{journal.data.date ? <>&nbsp;- {journal.data.title}</> : journal.data.title}</span>
         </a>
       ))
     }

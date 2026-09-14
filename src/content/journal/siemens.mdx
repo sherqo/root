@@ -5,11 +5,16 @@ description: 'A short account of my internship on the Virtual Ethernet team.'
 hidden: true
 ---
 
+import Image from '@/components/Image.astro';
+import jigsawImg from '@/assets/imgs/journal/jigsaw-puzzle-siemens-office.jpg';
+
 I spent two months interning at **Siemens EDA**, on the Virtual Ethernet team within Hardware Assisted Verification.
 
 I built a visualization library for interactive diagrams at **50k+ node scale**, representing hardware verification pipelines. The frontend used Web Workers to keep the UI responsive during heavy layout and validation, and I designed a real-time sync protocol between a C++ backend and React frontend so state changes didn't feel stuck.
 
 I also built **bottleneck detection** on live performance metrics to detect and show slow parts of a workflow while it's running.
+
+<Image src={jigsawImg} alt="Jigsaw Puzzle at Siemens DISW Office." />
 
 Short internship, but it taught me a lot about the relationship between visualization, distributed state, and performance-sensitive tooling. It also taught me a lot about working on a team, communicating clearly, and what corporate life actually looks like, my first time experiencing it firsthand.
 
