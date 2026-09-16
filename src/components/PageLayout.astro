@@ -1,6 +1,7 @@
 ---
 // The Root Layout with all global rules
 import '@/global.css';
+import { ClientRouter } from 'astro:transitions';
 import Font from 'astro/components/Font.astro';
 import Footer from './Footer.astro';
 
@@ -71,6 +72,20 @@ const schemas = [person, ...(structuredData ? (Array.isArray(structuredData) ? s
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
     <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
+    <ClientRouter />
+    <script type="speculationrules">
+      {
+        "prerender": [
+          {
+            "source": "document",
+            "where": {
+              "and": [{ "href_matches": "/*" }, { "not": { "href_matches": "/_astro/*" } }]
+            },
+            "eagerness": "moderate"
+          }
+        ]
+      }
+    </script>
   </head>
 
   <body
