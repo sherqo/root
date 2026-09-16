@@ -81,7 +81,7 @@ const schemas = [person, ...(structuredData ? (Array.isArray(structuredData) ? s
             "where": {
               "and": [{ "href_matches": "/*" }, { "not": { "href_matches": "/_astro/*" } }]
             },
-            "eagerness": "moderate"
+            "eagerness": "eager"
           }
         ]
       }
