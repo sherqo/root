@@ -48,6 +48,12 @@
     color: var(--primary-foreground);
   }
 
+  /* View Transitions: instant swap, no fade lag (SPA-like) */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0s;
+  }
+
   a {
     text-decoration: underline;
     text-underline-offset: 3px;
