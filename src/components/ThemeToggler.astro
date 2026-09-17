@@ -5,10 +5,12 @@
 >
 
 <script is:inline>
-  function t() {
-    let b = document.getElementById('tt'),
-      s = document.getElementById('tt-text'),
-      d = localStorage.t === 'd';
+  function initThemeToggle() {
+    const b = document.getElementById('tt');
+    const s = document.getElementById('tt-text');
+    if (!b || !s || b.dataset.init === '1') return;
+    b.dataset.init = '1';
+    let d = localStorage.t !== 'l';
     const u = function () {
       document.documentElement.classList.toggle('dark', d);
       s.textContent = d ? 'dark' : 'light';
@@ -20,5 +22,6 @@
     };
     u();
   }
-  t();
+  document.addEventListener('astro:page-load', initThemeToggle);
+  initThemeToggle();
 </script>

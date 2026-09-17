@@ -20,13 +20,23 @@ const mail = 'hi@sherqo.me';
 </footer>
 
 <script is:inline>
-  const nav = document.getElementById('footer');
-  const dropOrder = ['d-yt', 'd-in', 'd-x', 'd-resume', 'd-git'].map(id => document.getElementById(id));
+  let footerObserver;
+  function initFooterOverflow() {
+    const nav = document.getElementById('footer');
+    if (!nav) return;
+    if (footerObserver) footerObserver.disconnect();
+    const dropOrder = ['d-yt', 'd-in', 'd-x', 'd-resume', 'd-git'].map(id => document.getElementById(id));
 
-  new ResizeObserver(() => {
-    dropOrder.forEach(el => el && (el.style.display = ''));
-    for (let el of dropOrder) {
-      if (nav.scrollWidth > nav.clientWidth && el) el.style.display = 'none';
-    }
-  }).observe(nav.parentElement);
+    const update = () => {
+      dropOrder.forEach(el => el && (el.style.display = ''));
+      for (let el of dropOrder) {
+        if (nav.scrollWidth > nav.clientWidth && el) el.style.display = 'none';
+      }
+    };
+    update();
+    footerObserver = new ResizeObserver(update);
+    if (nav.parentElement) footerObserver.observe(nav.parentElement);
+  }
+  document.addEventListener('astro:page-load', initFooterOverflow);
+  initFooterOverflow();
 </script>
